@@ -170,3 +170,45 @@ export const resetPassword = async (req, res, next) => {
     next(err);
   }
 };
+
+//GET USER DETAILS (This route can be accessed only by people who have logged in)
+export const getUserDetails = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//CHANGE PASSWORD ROUTE (This route can be accessed only by people who have logged in)
+export const updatePassword = async (req, res, next) => {
+  try {
+    //We add +password as now we need the password as well
+    const user = await User.findById(req.user.id).select("+password");
+
+    //Here old password will be given by the user
+    //It should match the password then only user can change the new password
+    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+    if (!isPasswordMatched) {
+      return next(new ErrorHandler("Old password is incorrect", 400));
+    }
+
+    if (req.body.newPassword !== req.body.confirmPassword) {
+      return next(new ErrorHandler("Password does not match", 400));
+    }
+
+    user.password = req.body.newPassword;
+
+    await user.save();
+
+    sendToken(user, 200, res);
+  } catch (err) {
+    next(err);
+  }
+};
