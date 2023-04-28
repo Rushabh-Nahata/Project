@@ -21,7 +21,7 @@ router.get(
 
 //POST
 router.post(
-  "/products/new",
+  "/admin/products/new",
   isAuthenticatedUser,
   authorizeRoles("admin"),
   createProduct
@@ -29,7 +29,7 @@ router.post(
 
 //PUT
 router.put(
-  "/products/:id",
+  "/admin/products/:id",
   isAuthenticatedUser,
   authorizeRoles("admin"),
   updateProduct
@@ -37,7 +37,7 @@ router.put(
 
 //DELETE
 router.delete(
-  "/products/:id",
+  "/admin/products/:id",
   isAuthenticatedUser,
   authorizeRoles("admin"),
   deleteProduct

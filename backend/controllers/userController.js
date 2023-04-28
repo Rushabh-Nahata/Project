@@ -212,3 +212,30 @@ export const updatePassword = async (req, res, next) => {
     next(err);
   }
 };
+
+//UPDATE PROFILE CONTROLLER (This route can be accessed only by people who have logged in)
+export const updateProfile = async (req, res, next) => {
+  try {
+    //We will get this data from the user
+    const newUserData = {
+      name: req.body.name,
+      email: req.body.email,
+    };
+
+    //We will add cloudinary later
+
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    });
+
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
