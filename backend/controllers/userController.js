@@ -1,4 +1,5 @@
 import User from "../models/userModels.js";
+import Product from "../models/productModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/jwtToken.js";
 import sendEmail from "../utils/sendEmail.js";
@@ -172,6 +173,7 @@ export const resetPassword = async (req, res, next) => {
 };
 
 //GET USER DETAILS (This route can be accessed only by people who have logged in)
+//By this route you can information about the logged in user
 export const getUserDetails = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
@@ -238,4 +240,203 @@ export const updateProfile = async (req, res, next) => {
   }
 };
 
+//Get all users(Only accessible by admin)
+export const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
 
+    res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//Get any user by ID (Only accessible by Admin)
+export const getSingleUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return next(
+        new ErrorHandler(`User does not exist with ID ${req.params.id}`, 400)
+      );
+    }
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//UPDATE USER ROLE (This route can be accessed only by admin)
+//By this route admin can change the role of any user
+export const updateUserRole = async (req, res, next) => {
+  try {
+    const newUserData = {
+      name: req.body.name,
+      email: req.body.email,
+      role: req.body.role,
+    };
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    });
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//DELETE USER (By this admin can delete any user if he/she wants)
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    //We will remove  cloudinary later
+    if (!user) {
+      return next(
+        new ErrorHandler(`User does not exist with ID ${req.params.id}`, 400)
+      );
+    }
+
+    await user.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: "User deleted Successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//Create new Review Or Update the review
+
+export const createProductReview = async (req, res, next) => {
+  try {
+    const { rating, comment, productId } = req.body;
+
+    //This is the object named review
+    const review = {
+      user: req.user._id,
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+    };
+
+    //Find the product whose review is created
+    const product = await Product.findById(productId);
+
+    //Is checked will find whether the current logged in user as reviewed this project or not
+    //If he has it will update the previous review else add a new review
+    const isReviewed = product.reviews.find(
+      (rev) => rev.user.toString() === req.user._id.toString()
+    );
+
+    if (isReviewed) {
+      product.reviews.forEach((rev) => {
+        if (rev.user.toString() === req.user._id.toString()) {
+          (rev.rating = rating), (rev.comment = comment);
+        }
+      });
+    } else {
+      product.reviews.push(review);
+      product.numOfReviews = product.reviews.length;
+    }
+
+    //We will take an average of all the ratings in review array
+    let avg = 0;
+
+    product.reviews.forEach((rev) => {
+      avg += rev.rating;
+    });
+    product.ratings = avg / product.reviews.length;
+
+    //Save the product once the review is updated
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// This controller is to get all the reviews of a product
+
+export const getProductReviews = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.query.id);
+
+    if (!product) {
+      return next(new ErrorHandler("Product not found !", 404));
+    }
+
+    res.status(200).json({
+      success: true,
+      reviews: product.reviews,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//Delete Review
+export const deleteReview = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.query.productId);
+
+    if (!product) {
+      return next(new ErrorHandler("Product not found !", 404));
+    }
+
+    //In this we keep all the products that we want to keep and filter the rest
+    const reviews = product.reviews.filter(
+      (rev) => rev._id.toString() !== req.query.id.toString()
+    );
+
+    let avg = 0;
+
+    reviews.forEach((rev) => {
+      avg += rev.rating;
+    });
+
+    const ratings = avg / reviews.length;
+
+    const numOfReviews = reviews.length;
+
+    await Product.findByIdAndUpdate(
+      req.query.productId,
+      {
+        reviews,
+        ratings,
+        numOfReviews,
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      }
+    );
+
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
