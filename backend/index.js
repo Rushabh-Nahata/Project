@@ -8,6 +8,7 @@ import productRoutes from "./routes/productRoutes.js";
 import mongoose from "mongoose";
 import errorMiddleware from "./middleware/error.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoute from "./routes/orderRoute.js"
 
 //Handling Uncaught exception
 
@@ -31,6 +32,7 @@ app.use(cors());
 /*ROUTES*/
 app.use("/api/v1", productRoutes);
 app.use("/api/v1", userRoutes);
+app.use("/api/v1", orderRoute);
 
 //ERROR MIDDLEWARE
 app.use(errorMiddleware);
