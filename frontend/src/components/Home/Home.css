@@ -1,0 +1,30 @@
+.home-bg-img-container {
+  background-image: url("../images/bg2-min.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  opacity:0.9;
+}
+
+
+.home-text-innercontainer button {
+  width: 10vw;
+  height: 6vh;
+  font-size: 1vw;
+  font-weight: 500;
+  background: rgb(48 48 48);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  color: white;
+}
+
+.home-text-innercontainer p{
+    margin-right: 1vw;
+}
+.home-text-innercontainer button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.156);
+    color: black;
+}
