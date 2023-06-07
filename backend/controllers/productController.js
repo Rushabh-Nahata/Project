@@ -22,7 +22,7 @@ export const createProduct = async (req, res, next) => {
 export const getAllProducts = async (req, res, next) => {
   try {
     //This is used to describe the number of products per page. Useful in pagination
-    const resultPerPage = 5;
+    const resultPerPage = 8;
     const productCount = await Product.countDocuments();
 
     const apiFeature = new ApiFeatures(Product.find(), req.query)

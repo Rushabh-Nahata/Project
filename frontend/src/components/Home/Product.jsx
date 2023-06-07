@@ -3,15 +3,16 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
-const options = {
-  edit: false,
-  color: "rgba(20,20,0.1)",
-  activeColor: "tomato",
-  value: 2.5,
-  isHalf: true,
-  size: window.innerWidth < 600 ? 20 : 24,
-};
 function Product({ product }) {
+
+  const options = {
+    edit: false,
+    color: "rgba(20,20,0.1)",
+    activeColor: "tomato",
+    value: product.ratings,
+    isHalf: true,
+    size: window.innerWidth < 600 ? 20 : 24,
+  };
   return (
     <Link className="product-card" to={product._id}>
       <Box
@@ -23,7 +24,8 @@ function Product({ product }) {
           justifyContent: "flex-start",
           flexDirection: "column",
           height: "54vh",
-          marginRight: "3vw",
+          marginRight: "1vw",
+          marginLeft:"1vw",
           marginBottom: "5vh",
           borderRadius: "1px",
         }}
@@ -88,7 +90,7 @@ function Product({ product }) {
             }}
           >
             <ReactStars {...options} />
-            <span>(256 Reviews)</span>
+            <span>({product.numOfReviews})</span>
           </Box>
 
           <Box
@@ -98,7 +100,7 @@ function Product({ product }) {
               color: "black",
             }}
           >
-            <span>{product.price}</span>
+            <span>Rs {product.price}</span>
           </Box>
         </Box>
       </Box>
