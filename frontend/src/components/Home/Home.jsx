@@ -1,30 +1,15 @@
 import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import SearchIcon from "@mui/icons-material/Search";
 import "./Home.css";
 import { getProduct } from "../../store/products/getProducts";
 import { useDispatch, useSelector } from "react-redux";
-
-import Product from "./Product";
-import Footer from "../layout/Footer/Footer";
+import ProductCard from "./ProductCard";
 import { useEffect } from "react";
 import Loader from "../layout/Loader/Loader";
-// import { useEffect } from "react";
-
-// const product = {
-//   name: "Blue Tshirt",
-//   price: "Rs 3000",
-//   images: [
-//     {
-//       url: "https://m.media-amazon.com/images/I/61DGAlvxRLL._AC_UL480_FMwebp_QL65_.jpg",
-//     },
-//   ],
-//   _id: "atharva",
-// };
+import { useAlert } from "react-alert";
 
 const Home = () => {
+  const alert = useAlert();
   const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
   const { loading, error, products, productsCount } = useSelector(
@@ -32,13 +17,17 @@ const Home = () => {
   );
 
   useEffect(() => {
+    if (error) {
+      return alert.error(error);
+    }
     getProduct(dispatch);
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, error, alert]);
 
   return (
     <Box>
       {loading ? (
-        <Loader/>
+        <Loader />
       ) : (
         <Box
           sx={{
@@ -50,110 +39,6 @@ const Home = () => {
             flexDirection: "column",
           }}
         >
-          <Box
-            className="home-navbar-container"
-            sx={{
-              // border: "2px solid black",
-              width: "100%",
-              height: "9vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              className="navbar-logo-container"
-              sx={{
-                // border: "2px solid black",
-                width: "fit-content",
-                height: "67%",
-                display: "flex",
-                alignItems: "center",
-                fontSize: "1.8rem",
-                fontWeight: "700",
-                marginLeft: "3vw",
-                fontFamily: "Montserrat",
-              }}
-            >
-              <span>SHOPHUB</span>
-            </Box>
-            <Box
-              className="navbar-options-container"
-              sx={{
-                // border: "2px solid black",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-evenly",
-                width: "fit-content",
-                marginRight: "4vw",
-              }}
-            >
-              <Typography
-                sx={{
-                  marginLeft: "3vw",
-                  fontWeight: "500",
-                  fontFamily: "Montserrat",
-                  cursor: "pointer",
-                }}
-              >
-                Home
-              </Typography>
-              <Typography
-                sx={{
-                  marginLeft: "3vw",
-                  fontWeight: "500",
-                  fontFamily: "Montserrat",
-                  cursor: "pointer",
-                }}
-              >
-                Products
-              </Typography>
-              <Typography
-                sx={{
-                  marginLeft: "3vw",
-                  fontWeight: "500",
-                  fontFamily: "Montserrat",
-                  cursor: "pointer",
-                }}
-              >
-                Contact
-              </Typography>
-              <Typography
-                sx={{
-                  marginLeft: "3vw",
-                  fontWeight: "500",
-                  fontFamily: "Montserrat",
-                  cursor: "pointer",
-                }}
-              >
-                About
-              </Typography>
-              <AccountCircleIcon
-                sx={{
-                  marginLeft: "2.5vw",
-                  fontWeight: "500",
-                  fontSize: "30px",
-                  cursor: "pointer",
-                }}
-              />
-              <LocalMallOutlinedIcon
-                sx={{
-                  marginLeft: "2.5vw",
-                  fontWeight: "500",
-                  fontSize: "30px",
-                  cursor: "pointer",
-                }}
-              />
-              <SearchIcon
-                sx={{
-                  marginLeft: "2.5vw",
-                  fontWeight: "500",
-                  fontSize: "30px",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
-          </Box>
           <Box
             className="home-bg-img-container"
             sx={{
@@ -202,17 +87,18 @@ const Home = () => {
                 >
                   Shopping Experience.
                 </Typography>
-                <Link>
+                <a href="#home-products">
                   <button>
                     <p>Shop Now</p>
                     <LocalMallOutlinedIcon />
                   </button>
-                </Link>
+                </a>
               </Box>
             </Box>
           </Box>
           <Box
             className="home-products-container"
+            id="home-products"
             sx={{
               // border: "2px solid black",
               minHeight: "80vh",
@@ -271,21 +157,10 @@ const Home = () => {
                 }}
               >
                 {products.map((product) => (
-                  <Product key={product._id} product={product} />
+                  <ProductCard key={product._id} product={product} />
                 ))}
               </Box>
             </Box>
-          </Box>
-          <Box
-            className="home-footer-container"
-            sx={{
-              // border: "2px sol id blue",
-              width: "100%",
-              height: "20vh",
-              backgroundColor: "black",
-            }}
-          >
-            <Footer />
           </Box>
         </Box>
       )}

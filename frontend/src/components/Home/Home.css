@@ -4,8 +4,6 @@
   background-repeat: no-repeat;
   opacity:0.9;
 }
-
-
 .home-text-innercontainer button {
   width: 10vw;
   height: 6vh;
@@ -16,15 +14,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.5s;
+  transition: 0.s;
   color: white;
-}
 
+}
 .home-text-innercontainer p{
     margin-right: 1vw;
 }
 .home-text-innercontainer button:hover{
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.156);
-    color: black;
+    background-color: rgb(28 28 28);
+    /* color: black; */
 }

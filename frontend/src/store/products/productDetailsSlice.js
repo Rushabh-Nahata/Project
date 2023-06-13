@@ -1,18 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productSlice = createSlice({
-  name: "products",
+const productDetailsSlice = createSlice({
+  name: "productDetails",
   initialState: {
-    products: [],
+    product: {},
     loading: true,
-    productsCount: 0,
     error: null,
   },
   reducers: {
-    setProducts(state, action) {
-      state.products = action.payload.products;
-      state.productsCount = action.payload.productCount;
+    // eslint-disable-next-line no-unused-vars
+    getAllProductDetails(state, action) {
       state.loading = false;
+      state.product = action.payload.product;
     },
     setError(state, action) {
       state.error = action.payload.error;
@@ -20,11 +19,10 @@ const productSlice = createSlice({
     },
     clearError(state) {
       state.error = null;
-      
     },
   },
 });
 
-export const productActions = productSlice.actions;
+export const productDetailsSliceActions = productDetailsSlice.actions;
 
-export default productSlice;
+export default productDetailsSlice;

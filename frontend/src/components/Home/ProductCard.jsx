@@ -3,8 +3,7 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
-function Product({ product }) {
-
+function ProductCard({ product }) {
   const options = {
     edit: false,
     color: "rgba(20,20,0.1)",
@@ -14,7 +13,7 @@ function Product({ product }) {
     size: window.innerWidth < 600 ? 20 : 24,
   };
   return (
-    <Link className="product-card" to={product._id}>
+    <Link className="product-card" to={`/product/${product._id}`}>
       <Box
         sx={{
           border: "1px solid #e7e3e3",
@@ -25,7 +24,7 @@ function Product({ product }) {
           flexDirection: "column",
           height: "54vh",
           marginRight: "1vw",
-          marginLeft:"1vw",
+          marginLeft: "1vw",
           marginBottom: "5vh",
           borderRadius: "1px",
         }}
@@ -108,4 +107,4 @@ function Product({ product }) {
   );
 }
 
-export default Product;
+export default ProductCard;

@@ -1,0 +1,13 @@
+.review-user-image-holder img{
+    width:100%;
+    height:100%;
+    border-radius:50px;
+}
+.review-content-holder p{
+    font-weight: 600;
+    font-size: 1.8vh;
+}
+.review-content-holder span{
+    font-weight:500;
+    font-size: 1.6vh;
+}
