@@ -1,7 +1,8 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -15,6 +16,7 @@ function NavBar() {
         alignItems: "center",
         justifyContent: "space-between",
         borderBottom: "1px solid #0000001f",
+        
       }}
     >
       <Box
@@ -44,32 +46,43 @@ function NavBar() {
           marginRight: "4vw",
         }}
       >
+        <Link to="/">
+          <Typography
+            sx={{
+              marginLeft: "3vw",
+              fontWeight: "500",
+              fontFamily: "Montserrat",
+              cursor: "pointer",
+              textDecoration:"none" ,
+              color:"black"
+            }}
+          >
+            Home
+          </Typography>
+        </Link>
+        <Link to="/products">
+          <Typography
+            sx={{
+              marginLeft: "3vw",
+              fontWeight: "500",
+              fontFamily: "Montserrat",
+              cursor: "pointer",
+              textDecoration:"none" ,
+              color:"black"
+            }}
+          >
+            Products
+          </Typography>
+        </Link>
+
         <Typography
           sx={{
             marginLeft: "3vw",
             fontWeight: "500",
             fontFamily: "Montserrat",
             cursor: "pointer",
-          }}
-        >
-          Home
-        </Typography>
-        <Typography
-          sx={{
-            marginLeft: "3vw",
-            fontWeight: "500",
-            fontFamily: "Montserrat",
-            cursor: "pointer",
-          }}
-        >
-          Products
-        </Typography>
-        <Typography
-          sx={{
-            marginLeft: "3vw",
-            fontWeight: "500",
-            fontFamily: "Montserrat",
-            cursor: "pointer",
+            textDecoration:"none" ,
+              color:"black"
           }}
         >
           Contact
@@ -80,6 +93,8 @@ function NavBar() {
             fontWeight: "500",
             fontFamily: "Montserrat",
             cursor: "pointer",
+            textDecoration:"none" ,
+              color:"black"
           }}
         >
           About
@@ -90,6 +105,8 @@ function NavBar() {
             fontWeight: "500",
             fontSize: "30px",
             cursor: "pointer",
+            textDecoration:"none" ,
+              color:"black"
           }}
         />
         <LocalMallOutlinedIcon
@@ -98,17 +115,22 @@ function NavBar() {
             fontWeight: "500",
             fontSize: "30px",
             cursor: "pointer",
+            textDecoration:"none" ,
+              color:"black"
           }}
         />
-        <Divider orientation="vertical" flexItem />
-        <SearchIcon
-          sx={{
-            marginLeft: "2.5vw",
-            fontWeight: "500",
-            fontSize: "30px",
-            cursor: "pointer",
-          }}
-        />
+        <Link to="/search">
+          <SearchIcon
+            sx={{
+              marginLeft: "2.5vw",
+              fontWeight: "500",
+              fontSize: "30px",
+              cursor: "pointer",
+              textDecoration:"none" ,
+              color:"black"
+            }}
+          />
+        </Link>
       </Box>
     </Box>
   );

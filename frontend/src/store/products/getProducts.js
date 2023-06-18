@@ -2,14 +2,17 @@ import { productDetailsSliceActions } from "./productDetailsSlice";
 import { productActions } from "./productSlice";
 import axios from "axios";
 
-export const getProduct = async (dispatch) => {
+export const getProduct = async (dispatch, keyword = "",currentPage=1) => {
   try {
-    const { data } = await axios.get("http://localhost:4000/api/v1/products");
+    let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}`;
+    const { data } = await axios.get(link);
+    // console.log(data);
 
     dispatch(
       productActions.setProducts({
         products: data.products,
         productCount: data.productCount,
+        resultPerPage: data.resultPerPage,
       })
     );
   } catch (e) {

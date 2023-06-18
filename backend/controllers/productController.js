@@ -36,6 +36,7 @@ export const getAllProducts = async (req, res, next) => {
       success: true,
       products,
       productCount,
+      resultPerPage
     });
   } catch (err) {
     next(err);

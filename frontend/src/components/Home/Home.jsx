@@ -12,9 +12,7 @@ const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
-  const { loading, error, products, productsCount } = useSelector(
-    (state) => state.products
-  );
+  const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (error) {
