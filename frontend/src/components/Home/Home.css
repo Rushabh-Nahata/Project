@@ -1,28 +1,21 @@
 .home-bg-img-container {
-  background-image: url("../images/min2.jpg");
+  background-image: url("../images/min2-min.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
-  opacity:0.9;
+  opacity: 0.9;
 }
 .home-text-innercontainer button {
-  width: 10vw;
-  height: 6vh;
-  font-size: 1vw;
-  font-weight: 500;
   background: rgb(48 48 48);
-  border-radius: 4px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.s;
-  color: white;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
+.home-text-innercontainer p {
+  margin-right: 1vw;
 }
-.home-text-innercontainer p{
-    margin-right: 1vw;
-}
-.home-text-innercontainer button:hover{
-    cursor: pointer;
-    background-color: rgb(28 28 28);
-    /* color: black; */
+.home-text-innercontainer button:hover {
+  cursor: pointer;
+  background-color: rgb(28 28 28);
+  /* color: black; */
 }

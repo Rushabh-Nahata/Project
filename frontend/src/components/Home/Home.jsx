@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "./Home.css";
 import { getProduct } from "../../store/products/getProducts";
@@ -35,6 +35,7 @@ const Home = () => {
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "column",
+            marginTop:"9vh"
           }}
         >
           <Box
@@ -86,10 +87,16 @@ const Home = () => {
                   Shopping Experience.
                 </Typography>
                 <a href="#home-products">
-                  <button>
-                    <p>Shop Now</p>
-                    <LocalMallOutlinedIcon />
-                  </button>
+                  <Button
+                    size="medium"
+                    variant="contained"
+                    endIcon={<LocalMallOutlinedIcon />}
+                    sx={{
+                      fontSize: "0.8rem",
+                    }}
+                  >
+                    Shop now
+                  </Button>
                 </a>
               </Box>
             </Box>

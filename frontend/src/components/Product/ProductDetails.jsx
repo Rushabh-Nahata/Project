@@ -48,6 +48,7 @@ function ProductDetails() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginTop:"9vh"
           }}
         >
           <Box

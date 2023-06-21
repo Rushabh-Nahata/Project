@@ -16,6 +16,11 @@ function NavBar() {
         alignItems: "center",
         justifyContent: "space-between",
         borderBottom: "1px solid #0000001f",
+        position:"fixed",
+        top:"0px",
+        zIndex:"2",
+        backgroundColor:"white"
+        
         
       }}
     >
@@ -103,7 +108,7 @@ function NavBar() {
           sx={{
             marginLeft: "2.5vw",
             fontWeight: "500",
-            fontSize: "30px",
+            fontSize: "26px",
             cursor: "pointer",
             textDecoration:"none" ,
               color:"black"
@@ -113,7 +118,7 @@ function NavBar() {
           sx={{
             marginLeft: "2.5vw",
             fontWeight: "500",
-            fontSize: "30px",
+            fontSize: "26px",
             cursor: "pointer",
             textDecoration:"none" ,
               color:"black"
@@ -124,7 +129,7 @@ function NavBar() {
             sx={{
               marginLeft: "2.5vw",
               fontWeight: "500",
-              fontSize: "30px",
+              fontSize: "26px",
               cursor: "pointer",
               textDecoration:"none" ,
               color:"black"

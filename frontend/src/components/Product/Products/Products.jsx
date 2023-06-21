@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Slider, Typography } from "@mui/material";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../../store/products/getProducts";
@@ -9,12 +9,25 @@ import { useAlert } from "react-alert";
 import { useParams } from "react-router";
 import Pagination from "react-js-pagination";
 
+const categories = [
+  "Laptop",
+  "Footwear",
+  "Bottom",
+  "Tops",
+  "Attire",
+  "Camera",
+  "SmartPhones",
+];
+
 function Products() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const params = useParams();
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0, 2500]);
+  const [category, setCategory] = useState("");
+  const [ratings, setRatings] = useState(0);
 
   const { loading, error, products, productsCount, resultPerPage } =
     useSelector((state) => state.products);
@@ -24,13 +37,16 @@ function Products() {
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  };
 
   useEffect(() => {
     if (error) {
       return alert.error(error);
     }
-    getProduct(dispatch, keyword, currentPage);
-  }, [dispatch, error, alert, keyword, currentPage]);
+    getProduct(dispatch, keyword, currentPage, price, category, ratings);
+  }, [dispatch, error, alert, keyword, currentPage, price, category, ratings]);
 
   return (
     <>
@@ -42,16 +58,133 @@ function Products() {
             sx={{
               width: "100%",
               minHeight: "91vh",
-              // border: "2px solid black",
+              border: "2px solid black",
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               justifyContent: "center",
+              marginTop: "9vh",
             }}
           >
             <Box
+              className="product-filter-container"
               sx={{
-                // border: "2px solid black",
-                width: "94%",
+                border: "2px solid black",
+                minHeight: "100vh",
+                width: "13%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                flexDirection: "column",
+              }}
+            >
+              <Box
+                className="price-filter-container"
+                sx={{
+                  // border: "1px solid black",
+                  width: "90%",
+                  marginTop: "1.5vh",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "0.9rem",
+                    marginBottom: "0.5vh",
+                  }}
+                >
+                  Price
+                </Typography>
+                <Slider
+                  value={price}
+                  onChange={priceHandler}
+                  size="small"
+                  valueLabelDisplay="auto"
+                  aria-labelledby="range-slider"
+                  min={0}
+                  max={25000}
+                  sx={{
+                    color: "rgb(48 48 48)",
+                    width: "90%",
+                    marginLeft: "5px",
+                  }}
+                />
+                <Divider orientation="horizontal" />
+              </Box>
+
+              <Box
+                className="category-filter-container"
+                sx={{
+                  // border: "1px solid black",
+                  width: "90%",
+                  marginTop: "1.5vh",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "0.9rem",
+                    marginBottom: "0.5vh",
+                  }}
+                >
+                  Categories
+                </Typography>
+
+                <ul className="categoryBox">
+                  {categories.map((category) => (
+                    <li
+                      className="category-link"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+
+                <Divider orientation="horizontal" />
+              </Box>
+              <Box
+                className="category-filter-container"
+                sx={{
+                  // border: "1px solid black",
+                  width: "90%",
+                  marginTop: "1.5vh",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "0.9rem",
+                    marginBottom: "0.5vh",
+                  }}
+                >
+                  Ratings above
+                </Typography>
+
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continuous-slider"
+                  valueLabelDisplay="auto"
+                  min={0}
+                  max={5}
+                  size="small"
+                  sx={{
+                    color: "rgb(48 48 48)",
+                    width: "90%",
+                    marginLeft: "5px",
+                  }}
+                />
+
+                <Divider orientation="horizontal" />
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                border: "2px solid black",
+                width: "87%",
                 minHeight: "88vh",
                 display: "flex",
                 alignItems: "center",
@@ -61,7 +194,7 @@ function Products() {
             >
               <Box
                 sx={{
-                  // border: "2px solid red",
+                  border: "2px solid red",
                   width: "100%",
                   height: "10vh",
                   display: "flex",
@@ -74,14 +207,14 @@ function Products() {
                     fontWeight: "500",
                   }}
                 >
-                  {/* {"> "}Products  */}
+                  {"> "}Products
                 </Typography>
               </Box>
 
               <Box
                 className="home-products-holder-container"
                 sx={{
-                  // border: "2px solid red",
+                  border: "2px solid red",
                   width: "100%",
                   minHeight: "70vh",
                   display: "flex",
@@ -99,7 +232,7 @@ function Products() {
               {productsCount > resultPerPage ? (
                 <Box
                   sx={{
-                    // border: "2px solid red",
+                    border: "2px solid red",
                     width: "100%",
                     minHeight: "10vh",
                     display: "flex",
