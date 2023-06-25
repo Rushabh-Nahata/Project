@@ -4,10 +4,16 @@ import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/jwtToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
+import cloudinary from "cloudinary";
 
 //Register our user
 export const registerUser = async (req, res, next) => {
   try {
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
     const { name, email, password } = req.body;
 
     //Creating a user
@@ -16,8 +22,8 @@ export const registerUser = async (req, res, next) => {
       email,
       password,
       avatar: {
-        public_id: "This is a sample id",
-        url: "ProfilePicUrl",
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
       },
     });
 
@@ -63,7 +69,7 @@ export const loginUser = async (req, res, next) => {
 //Logout a user
 export const logout = async (req, res, next) => {
   try {
-    res.cookie("token", null, {
+    res.cookie('token', null, {
       expires: new Date(Date.now()),
       httpOnly: true,
     });

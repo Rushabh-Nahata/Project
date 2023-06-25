@@ -58,7 +58,7 @@ function Products() {
             sx={{
               width: "100%",
               minHeight: "91vh",
-              border: "2px solid black",
+              // border: "2px solid black",
               display: "flex",
               alignItems: "flex-start",
               justifyContent: "center",
@@ -68,7 +68,7 @@ function Products() {
             <Box
               className="product-filter-container"
               sx={{
-                border: "2px solid black",
+                // border: "2px solid black",
                 minHeight: "100vh",
                 width: "13%",
                 display: "flex",
@@ -183,7 +183,7 @@ function Products() {
             </Box>
             <Box
               sx={{
-                border: "2px solid black",
+                // border: "2px solid black",
                 width: "87%",
                 minHeight: "88vh",
                 display: "flex",
@@ -194,7 +194,7 @@ function Products() {
             >
               <Box
                 sx={{
-                  border: "2px solid red",
+                  // border: "2px solid red",
                   width: "100%",
                   height: "10vh",
                   display: "flex",
@@ -214,7 +214,7 @@ function Products() {
               <Box
                 className="home-products-holder-container"
                 sx={{
-                  border: "2px solid red",
+                  // border: "2px solid red",
                   width: "100%",
                   minHeight: "70vh",
                   display: "flex",
@@ -232,7 +232,7 @@ function Products() {
               {productsCount > resultPerPage ? (
                 <Box
                   sx={{
-                    border: "2px solid red",
+                    // border: "2px solid red",
                     width: "100%",
                     minHeight: "10vh",
                     display: "flex",

@@ -7,8 +7,21 @@ import Footer from "./components/layout/Footer/Footer";
 import NavBar from "./components/layout/Navbar/NavBar";
 import Products from "./components/Product/Products/Products";
 import Search from "./components/Product/Search/Search";
+import LoginSignUp from "./components/User/LoginSignup/LoginSignup";
+import { loadUser } from "./store/users/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import Profile from "./components/User/Profile/Profile";
+import { useEffect } from "react";
+// import ProtectedRoute from "./components/Route/ProtectedRoute";
 
 function App() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    loadUser(dispatch);
+  }, [dispatch]);
+
   return (
     <Router>
       <Box className="App">
@@ -19,6 +32,10 @@ function App() {
           <Route exact path="/products" element={<Products />} />
           <Route path="/products/:keyword" element={<Products />} />
           <Route exact path="/search" element={<Search />} />
+          <Route exact path="/login" element={<LoginSignUp />} />
+          {/* {loadin?<Loader}<Route exact path="/account" element={<Profile />} /> */}
+
+          <Route exact path="/account" element={<Profile />} />
         </Routes>
 
         <Box

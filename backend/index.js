@@ -8,7 +8,10 @@ import productRoutes from "./routes/productRoutes.js";
 import mongoose from "mongoose";
 import errorMiddleware from "./middleware/error.js";
 import userRoutes from "./routes/userRoutes.js";
-import orderRoute from "./routes/orderRoute.js"
+import orderRoute from "./routes/orderRoute.js";
+import cloudinary from "cloudinary";
+import bodyParser from "body-parser";
+import fileUpload from "express-fileupload";
 
 //Handling Uncaught exception
 
@@ -22,12 +25,20 @@ dotenv.config({ path: "./config/config.env" });
 
 //MIDDLEWARES
 const app = express();
-app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 app.use(cookieParser());
+app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
-app.use(cors());
+// app.use(cors());
+
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(fileUpload());
 
 /*ROUTES*/
 app.use("/api/v1", productRoutes);
@@ -45,6 +56,12 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
     app.listen(PORT, () => {
       console.log("=================================");
       console.log(`App running on port : ${PORT}`);

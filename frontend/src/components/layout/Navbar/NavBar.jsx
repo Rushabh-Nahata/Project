@@ -1,10 +1,14 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Typography } from "@mui/material";
+import {  Box, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import UserOptions from "../UserOptions/UserOptions";
 
 function NavBar() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   return (
     <Box
       className="home-navbar-container"
@@ -16,12 +20,10 @@ function NavBar() {
         alignItems: "center",
         justifyContent: "space-between",
         borderBottom: "1px solid #0000001f",
-        position:"fixed",
-        top:"0px",
-        zIndex:"2",
-        backgroundColor:"white"
-        
-        
+        position: "fixed",
+        top: "0px",
+        zIndex: "2",
+        backgroundColor: "white",
       }}
     >
       <Box
@@ -58,8 +60,8 @@ function NavBar() {
               fontWeight: "500",
               fontFamily: "Montserrat",
               cursor: "pointer",
-              textDecoration:"none" ,
-              color:"black"
+              textDecoration: "none",
+              color: "black",
             }}
           >
             Home
@@ -72,8 +74,8 @@ function NavBar() {
               fontWeight: "500",
               fontFamily: "Montserrat",
               cursor: "pointer",
-              textDecoration:"none" ,
-              color:"black"
+              textDecoration: "none",
+              color: "black",
             }}
           >
             Products
@@ -86,8 +88,8 @@ function NavBar() {
             fontWeight: "500",
             fontFamily: "Montserrat",
             cursor: "pointer",
-            textDecoration:"none" ,
-              color:"black"
+            textDecoration: "none",
+            color: "black",
           }}
         >
           Contact
@@ -98,30 +100,39 @@ function NavBar() {
             fontWeight: "500",
             fontFamily: "Montserrat",
             cursor: "pointer",
-            textDecoration:"none" ,
-              color:"black"
+            textDecoration: "none",
+            color: "black",
           }}
         >
           About
         </Typography>
-        <AccountCircleIcon
-          sx={{
-            marginLeft: "2.5vw",
-            fontWeight: "500",
-            fontSize: "26px",
-            cursor: "pointer",
-            textDecoration:"none" ,
-              color:"black"
-          }}
-        />
+
+        {isAuthenticated ? (
+          <UserOptions user={user} />
+        ) : (
+          <Link to="/login">
+            <AccountCircleIcon
+              sx={{
+                marginLeft: "2.5vw",
+                fontWeight: "500",
+                fontSize: "26px",
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "black",
+              }}
+            />
+
+          </Link>
+        )}
+
         <LocalMallOutlinedIcon
           sx={{
             marginLeft: "2.5vw",
             fontWeight: "500",
             fontSize: "26px",
             cursor: "pointer",
-            textDecoration:"none" ,
-              color:"black"
+            textDecoration: "none",
+            color: "black",
           }}
         />
         <Link to="/search">
@@ -131,8 +142,8 @@ function NavBar() {
               fontWeight: "500",
               fontSize: "26px",
               cursor: "pointer",
-              textDecoration:"none" ,
-              color:"black"
+              textDecoration: "none",
+              color: "black",
             }}
           />
         </Link>
