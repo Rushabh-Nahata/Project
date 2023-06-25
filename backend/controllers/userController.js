@@ -69,7 +69,7 @@ export const loginUser = async (req, res, next) => {
 //Logout a user
 export const logout = async (req, res, next) => {
   try {
-    res.cookie('token', null, {
+    res.cookie("token", null, {
       expires: new Date(Date.now()),
       httpOnly: true,
     });
@@ -98,9 +98,7 @@ export const forgotPassword = async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    const resetPasswordUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/api/v1/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${process.env.FRONTEND_API_BODY}/password/reset/${resetToken}`;
 
     const message = `Your password reset token is :- \n\n${resetPasswordUrl} \n\nIf you have not requested this email then please Ignore it !`;
 
@@ -230,7 +228,24 @@ export const updateProfile = async (req, res, next) => {
       email: req.body.email,
     };
 
-    //We will add cloudinary later
+    if (req.body.avatar !== "") {
+      const user = await User.findById(req.user.id);
+
+      const imageId = user.avatar.public_id;
+
+      await cloudinary.v2.uploader.destroy(imageId);
+
+      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      });
+
+      newUserData.avatar = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
+    }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
       new: true,

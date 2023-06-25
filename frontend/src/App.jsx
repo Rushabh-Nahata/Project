@@ -9,14 +9,16 @@ import Products from "./components/Product/Products/Products";
 import Search from "./components/Product/Search/Search";
 import LoginSignUp from "./components/User/LoginSignup/LoginSignup";
 import { loadUser } from "./store/users/userActions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Profile from "./components/User/Profile/Profile";
 import { useEffect } from "react";
-// import ProtectedRoute from "./components/Route/ProtectedRoute";
+import ProtectedRoute from "./components/Route/ProtectedRoute";
+import UpdateProfile from "./components/User/UpdateProfile/UpdateProfile";
+import UpdatePassword from "./components/User/UpdatePassword/UpdatePassword";
+import ForgotPassword from "./components/User/ForgotPassword/ForgotPassword";
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     loadUser(dispatch);
@@ -33,9 +35,34 @@ function App() {
           <Route path="/products/:keyword" element={<Products />} />
           <Route exact path="/search" element={<Search />} />
           <Route exact path="/login" element={<LoginSignUp />} />
-          {/* {loadin?<Loader}<Route exact path="/account" element={<Profile />} /> */}
-
-          <Route exact path="/account" element={<Profile />} />
+          <Route
+            exact
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/me/update"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/password/update"
+            element={
+              <ProtectedRoute>
+                <UpdatePassword />
+              </ProtectedRoute>
+            }
+          />
+         <Route exact path="/password/forgot" element={<ForgotPassword/>} />
         </Routes>
 
         <Box
