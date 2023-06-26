@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Box, Divider } from "@mui/material";
 import "./ProductDetails.css";
 import Carousel from "react-material-ui-carousel";
@@ -9,15 +9,40 @@ import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard/ReviewCard";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import { addItemsToCart } from "../../store/carts/cartActions";
+// import store from "../../store/store";
 
 function ProductDetails() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const params = useParams();
   // eslint-disable-next-line no-unused-vars
+
+  // console.log(store.getState().carts.cartItems)
+
+  const [quantity, setQuantity] = useState(1);
+  // console.log(quantity)
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
+
+  const increaseQuantity = () => {
+    if (product.Stock <= quantity) return;
+    const qty = quantity + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+
+    const qty = quantity - 1;
+    setQuantity(qty);
+  };
+
+  const addToCartHandler = () => {
+    addItemsToCart(dispatch, params.id, quantity);
+    alert.success("Item Added To Cart");
+  };
 
   const options = {
     edit: false,
@@ -33,7 +58,7 @@ function ProductDetails() {
       return alert.error(error);
     }
     getProductDetail(dispatch, params.id);
-  }, [dispatch, params.id, error, alert]);
+  }, [dispatch, params.id, error, alert, quantity]);
 
   return (
     <>
@@ -48,7 +73,7 @@ function ProductDetails() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop:"9vh"
+            marginTop: "9vh",
           }}
         >
           <Box
@@ -160,7 +185,7 @@ function ProductDetails() {
                 <h2>Rs. {product.price}</h2>
               </Box>
               <Divider orientation="horizontal" flexItem />
-              <Box
+              {/* <Box
                 className="product-quantity-container"
                 sx={{
                   // border: "2px solid black",
@@ -185,7 +210,38 @@ function ProductDetails() {
                 >
                   <button>ADD TO BAG</button>
                 </Box>
-              </Box>
+              </Box> */}
+
+              <div className="detailsBlock-3-1">
+                <div className="detailsBlock-3-1-1">
+                  <button
+                    onClick={() => {
+                      decreaseQuantity();
+                    }}
+                  >
+                    -
+                  </button>
+                  <input
+                    readOnly
+                    type="number"
+                    value={quantity}
+                    placeholder={quantity}
+                  />
+                  <button
+                    onClick={() => {
+                      increaseQuantity();
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  disabled={product.Stock < 1 ? true : false}
+                  onClick={addToCartHandler}
+                >
+                  Add to Cart
+                </button>
+              </div>
               <Divider orientation="horizontal" flexItem />
 
               <Box
@@ -200,7 +256,7 @@ function ProductDetails() {
                 }}
               >
                 <p>
-                  Status : {product.Stock === 0 ? "InStock" : "Out of Stock"}
+                  Status : {product.Stock === 0 ? "Out of Stock" : "In Stock"}
                 </p>
               </Box>
               <Divider orientation="horizontal" flexItem />

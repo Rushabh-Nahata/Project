@@ -6,9 +6,14 @@ const forgotPasswordSlice = createSlice({
     loading: false,
     error: null,
     message: "",
+    success: "",
   },
   reducers: {
     forgotPasswordRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    resetPasswordRequest(state) {
       state.loading = true;
       state.error = null;
     },
@@ -17,8 +22,16 @@ const forgotPasswordSlice = createSlice({
       state.loading = false;
       state.message = action.payload.message;
     },
+    resetPasswordSuccess(state, action) {
+      state.loading = false;
+      state.success = action.payload.success;
+    },
 
     forgotPasswordFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    resetPasswordFail(state, action) {
       state.loading = false;
       state.error = action.payload.error;
     },

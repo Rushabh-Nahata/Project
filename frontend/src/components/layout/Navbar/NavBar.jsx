@@ -1,6 +1,6 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import {  Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -121,20 +121,20 @@ function NavBar() {
                 color: "black",
               }}
             />
-
           </Link>
         )}
-
-        <LocalMallOutlinedIcon
-          sx={{
-            marginLeft: "2.5vw",
-            fontWeight: "500",
-            fontSize: "26px",
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "black",
-          }}
-        />
+        <Link to="/cart">
+          <LocalMallOutlinedIcon
+            sx={{
+              marginLeft: "2.5vw",
+              fontWeight: "500",
+              fontSize: "26px",
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "black",
+            }}
+          />
+        </Link>
         <Link to="/search">
           <SearchIcon
             sx={{

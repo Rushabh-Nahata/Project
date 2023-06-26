@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../store/users/userActions";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 // eslint-disable-next-line react/prop-types
 function UserOptions({ user }) {
@@ -44,9 +45,11 @@ function UserOptions({ user }) {
   function account() {
     navigateTo("/account");
   }
+  function cart() {
+    navigateTo("/cart");
+  }
 
   function logoutUser() {
-    // dispatch(logout());
     logout(dispatch)
     navigateTo("/")
     alert.success("Logout Successfully");
@@ -142,6 +145,21 @@ function UserOptions({ user }) {
             }}
           />{" "}
           Orders
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            cart();
+          }}
+        >
+          <ShoppingCartOutlinedIcon
+            fontSize="small"
+            sx={{
+              color: "rgba(0, 0, 0, 0.54)",
+              marginRight: "1vw",
+            }}
+          />{" "}
+          Cart
         </MenuItem>
         <MenuItem
           fontSize="small"
