@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import FaceIcon from "@mui/icons-material/Face";
@@ -13,6 +13,8 @@ import "./LoginSignUp.css";
 function LoginSignUp() {
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const alert = useAlert();
 
   const { error, loading, isAuthenticated } = useSelector(
@@ -74,7 +76,7 @@ function LoginSignUp() {
     }
   };
 
-  // const redirect = location.search ? location.search.split("=")[1] : "/account";
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
 
   useEffect(() => {
     if (error) {
@@ -82,9 +84,9 @@ function LoginSignUp() {
       clearErrors(dispatch);
     }
     if (isAuthenticated) {
-      navigateTo('/account');
+      navigateTo(redirect);
     }
-  }, [dispatch, error, alert, isAuthenticated,navigateTo]);
+  }, [dispatch, error, alert, isAuthenticated,navigateTo,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

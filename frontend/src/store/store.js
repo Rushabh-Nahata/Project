@@ -5,6 +5,7 @@ import userSlice from "./users/userSlice";
 import userProfileSlice from "./users/userProfileSlice";
 import forgotPasswordSlice from "./users/forgotPasswordSlice";
 import cartsSlice from "./carts/cartsSlice";
+import orderSlice from "./orders/orderSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     profile: userProfileSlice.reducer,
     forgot: forgotPasswordSlice.reducer,
     carts: cartsSlice.reducer,
+    order: orderSlice.reducer,
   },
 });
 

@@ -7,6 +7,9 @@ const cartsSlice = createSlice({
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
     item: {},
+    shippingInfo: localStorage.getItem("shippingInfo")
+      ? JSON.parse(localStorage.getItem("shippingInfo"))
+      : {},
   },
   reducers: {
     addToCart(state, action) {
@@ -31,7 +34,10 @@ const cartsSlice = createSlice({
         (i) => i.product !== action.payload.id
       );
     },
-    
+
+    saveShippingInfo(state, action) {
+      state.shippingInfo = action.payload.shippingInfo;
+    },
   },
 });
 

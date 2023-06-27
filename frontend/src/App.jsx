@@ -7,24 +7,50 @@ import Footer from "./components/layout/Footer/Footer";
 import NavBar from "./components/layout/Navbar/NavBar";
 import Products from "./components/Product/Products/Products";
 import Search from "./components/Product/Search/Search";
-import LoginSignUp from "./components/User/LoginSignup/LoginSignup";
+import LoginSignUp from "./components/User/LoginSignUp/LoginSignUp";
 import { loadUser } from "./store/users/userActions";
 import { useDispatch } from "react-redux";
 import Profile from "./components/User/Profile/Profile";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdateProfile from "./components/User/UpdateProfile/UpdateProfile";
 import UpdatePassword from "./components/User/UpdatePassword/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword/ResetPassword";
 import Cart from "./components/Product/Cart/Cart";
+import Shipping from "./components/Product/Cart/Shipping";
+import ConfirmOrder from "./components/Product/Cart/ConfirmOrder";
+import axios from "axios";
+import Payment from "./components/Product/Cart/Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from './components/Product/Cart/OrderSuccess'
 
 function App() {
   const dispatch = useDispatch();
 
+  const [stripeApiKey, setStripeApiKey] = useState("kbnobi");
+
+  async function getStripeApiKey() {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    const { data } = await axios.get(
+      "http://localhost:4000/api/v1/stripeapikey",
+      config
+    );
+    setStripeApiKey(data.stripeApiKey);
+  }
+
   useEffect(() => {
     loadUser(dispatch);
+    getStripeApiKey();
   }, [dispatch]);
+
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <Router>
@@ -65,8 +91,58 @@ function App() {
             }
           />
           <Route exact path="/password/forgot" element={<ForgotPassword />} />
-          <Route exact path="/password/reset/:token" element={<ResetPassword />} />
-          <Route exact path="/cart" element={<Cart/>} />
+          <Route
+            exact
+            path="/password/reset/:token"
+            element={<ResetPassword />}
+          />
+          <Route exact path="/cart" element={<Cart />} />
+
+          <Route
+            exact
+            path="/shipping"
+            element={
+              <ProtectedRoute>
+                <Shipping />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/order/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+
+          {stripeApiKey && (
+            <Route
+              exact
+              path="/process/payment"
+              element={
+                <Elements stripe={loadStripe(stripeApiKey)}>
+                  <ProtectedRoute>
+                    <Payment />
+                  </ProtectedRoute>
+                </Elements>
+              }
+            />
+          )}
+
+          {/* <ProtectedRoute exact path="/success" component={OrderSuccess} /> */}
+
+          <Route
+            exact
+            path="/success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccess/>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
         <Box

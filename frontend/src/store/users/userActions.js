@@ -4,7 +4,6 @@ import { userActions } from "../users/userSlice";
 export const login = async (dispatch, email, password) => {
   try {
     dispatch(userActions.userLoginRequest());
-    // const config = { headers: { "Content-Type": "application/json" } };
 
     const config = {
       headers: {

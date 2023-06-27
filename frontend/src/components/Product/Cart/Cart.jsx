@@ -9,6 +9,7 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { Link, useNavigate } from "react-router-dom";
 
+
 const Cart = () => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -33,9 +34,10 @@ const Cart = () => {
   const deleteCartItems = (id) => {
     removeItemsFromCart(dispatch, id);
   };
+ 
 
   const checkoutHandler = () => {
-    navigateTo("/login?redirect=shipping");
+    navigateTo("/login?redirect=/shipping");
   };
 
   return (
