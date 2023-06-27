@@ -24,7 +24,9 @@ import axios from "axios";
 import Payment from "./components/Product/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import OrderSuccess from './components/Product/Cart/OrderSuccess'
+import OrderSuccess from "./components/Product/Cart/OrderSuccess";
+import MyOrder from "./components/Order/MyOrder";
+import OrderDetails from "./components/Order/OrderDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -139,7 +141,26 @@ function App() {
             path="/success"
             element={
               <ProtectedRoute>
-                <OrderSuccess/>
+                <OrderSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <MyOrder />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails/>
               </ProtectedRoute>
             }
           />

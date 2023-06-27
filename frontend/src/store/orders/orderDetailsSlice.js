@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const orderSlice = createSlice({
-  name: "order",
+const orderDetailsSlice = createSlice({
+  name: "myOrder",
   initialState: {
     loading: false,
     order: {},
@@ -9,14 +9,14 @@ const orderSlice = createSlice({
   },
   reducers: {
     // eslint-disable-next-line no-unused-vars
-    orderRequest(state, action) {
+    orderDetailsRequest(state, action) {
       state.loading = true;
     },
-    orderSuccess(state, action) {
+    orderDetailsSuccess(state, action) {
       state.order = action.payload.order;
       state.loading = false;
     },
-    orderFail(state, action) {
+    orderDetailsFail(state, action) {
       state.error = action.payload.error;
       state.loading = true;
     },
@@ -26,6 +26,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const orderActions = orderSlice.actions;
+export const orderDetailsActions = orderDetailsSlice.actions;
 
-export default orderSlice;
+export default orderDetailsSlice;
