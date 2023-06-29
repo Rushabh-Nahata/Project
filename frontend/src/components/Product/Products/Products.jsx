@@ -9,6 +9,7 @@ import { useAlert } from "react-alert";
 import { useParams } from "react-router";
 import Pagination from "react-js-pagination";
 
+
 const categories = [
   "Laptop",
   "Footwear",

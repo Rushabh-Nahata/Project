@@ -14,7 +14,6 @@ import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetail, newReview } from "../../store/products/getProducts";
 import { useParams } from "react-router";
-import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard/ReviewCard";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
@@ -62,12 +61,10 @@ function ProductDetails() {
   );
 
   const options = {
-    edit: false,
-    color: "rgba(20,20,0.1)",
-    activeColor: "tomato",
     value: product.ratings,
-    isHalf: true,
-    size: window.innerWidth < 600 ? 20 : 19,
+    size: "large",
+    readOnly: "true",
+    precision: 0.5,
   };
 
   const submitReviewToggle = () => {
@@ -208,8 +205,7 @@ function ProductDetails() {
                   color: "#303030bd",
                 }}
               >
-                <ReactStars {...options} />{" "}
-                <p> ({product.numOfReviews} Reviews)</p>
+                <Rating {...options} /> <p> ({product.numOfReviews} Reviews)</p>
               </Box>
 
               <Divider orientation="horizontal" flexItem />

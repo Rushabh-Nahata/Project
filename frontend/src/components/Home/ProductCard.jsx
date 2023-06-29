@@ -1,16 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
+import { Rating } from "@mui/material";
 
 function ProductCard({ product }) {
   const options = {
-    edit: false,
-    color: "rgba(20,20,0.1)",
-    activeColor: "tomato",
     value: product.ratings,
-    isHalf: true,
-    size: window.innerWidth < 600 ? 20 : 24,
+    readOnly: "true",
+    precision: 0.5,
   };
   return (
     <Link className="product-card" to={`/product/${product._id}`}>
@@ -88,7 +85,7 @@ function ProductCard({ product }) {
               fontWeight: "500",
             }}
           >
-            <ReactStars {...options} />
+            <Rating {...options} />
             <span>({product.numOfReviews})</span>
           </Box>
 

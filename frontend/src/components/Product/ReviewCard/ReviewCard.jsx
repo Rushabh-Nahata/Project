@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import "./ReviewCard.css";
-import ReactStars from "react-rating-stars-component";
 import profilePng from "../../images/bg2-min.jpg";
+
+import { Rating } from "@mui/material";
 
 function ReviewCard({ review }) {
   const options = {
-    edit: false,
-    color: "rgba(20,20,0.1)",
-    activeColor: "tomato",
     value: review.rating,
-    isHalf: true,
-    size: window.innerWidth < 600 ? 20 : 15,
+    readOnly: true,
+    precision: 0.5,
   };
   return (
     <>
@@ -19,7 +17,7 @@ function ReviewCard({ review }) {
         sx={{
           display: "flex",
           width: "100%",
-        //    border: "2px solid red",
+          //    border: "2px solid red",
           alignItems: "center",
           justifyContent: "flex-start",
           marginTop: "2vh",
@@ -34,7 +32,7 @@ function ReviewCard({ review }) {
             width: "6vh",
             height: "6vh",
             borderRadius: "50px",
-            marginRight:"1vw"
+            marginRight: "1vw",
           }}
         >
           <img src={profilePng} alt="User" />
@@ -51,11 +49,10 @@ function ReviewCard({ review }) {
           }}
         >
           <p>{review.name}</p>
-          <ReactStars {...options} />
+          <Rating {...options} />
           <span>{review.comment}</span>
         </Box>
       </Box>
-
     </>
   );
 }
