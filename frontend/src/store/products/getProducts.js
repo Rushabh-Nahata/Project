@@ -1,4 +1,5 @@
 import { productDetailsSliceActions } from "./productDetailsSlice";
+import { productReviewActions } from "./productReviewSlice";
 import { productActions } from "./productSlice";
 import axios from "axios";
 
@@ -8,7 +9,7 @@ export const getProduct = async (
   currentPage = 1,
   price = [0, 25000],
   category,
-  ratings=0
+  ratings = 0
 ) => {
   try {
     let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
@@ -54,6 +55,39 @@ export const getProductDetail = async (dispatch, id) => {
       productDetailsSliceActions.setError({
         error: e.message,
         loading: false,
+      })
+    );
+  }
+};
+
+// NEW REVIEW
+export const newReview = async (dispatch, reviewData) => {
+  try {
+    dispatch(productReviewActions.newReviewRequest());
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/review`,
+      reviewData,
+      config
+    );
+
+    dispatch(
+      productReviewActions.newReviewSuccess({
+        success: data.success,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    dispatch(
+      productReviewActions.newReviewFail({
+        error: error.response.data.message,
       })
     );
   }
