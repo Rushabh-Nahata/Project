@@ -6,6 +6,10 @@
   scroll-behavior: smooth;
 }
 
+body {
+  cursor: url("../public/cursor.png"), auto;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 7px;

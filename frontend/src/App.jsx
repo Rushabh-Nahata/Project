@@ -31,6 +31,10 @@ import Dashboard from "./components/admin/Dashboard";
 import ProductList from "./components/Admin/ProductList";
 import NewProduct from "./components/Admin/NewProduct";
 import UpdateProduct from "./components/Admin/UpdateProduct";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import Contact from "./components/Contact/Contact";
+import About from "./components/About/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +73,8 @@ function App() {
           <Route path="/products/:keyword" element={<Products />} />
           <Route exact path="/search" element={<Search />} />
           <Route exact path="/login" element={<LoginSignUp />} />
+          <Route exact path="/about" element={<Contact />} />
+          <Route exact path="/contact" element={<About />} />
           <Route
             exact
             path="/account"
@@ -207,6 +213,27 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            exact
+            path="/admin/orders"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <OrderList />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/admin/order/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProcessOrder />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
 
         <Box

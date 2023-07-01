@@ -6,7 +6,7 @@ import { Rating } from "@mui/material";
 function ProductCard({ product }) {
   const options = {
     value: product.ratings,
-    readOnly: "true",
+    readOnly: true,
     precision: 0.5,
   };
   return (

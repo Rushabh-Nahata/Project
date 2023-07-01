@@ -63,7 +63,7 @@ function ProductDetails() {
   const options = {
     value: product.ratings,
     size: "large",
-    readOnly: "true",
+    readOnly: true,
     precision: 0.5,
   };
 

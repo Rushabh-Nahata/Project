@@ -69,33 +69,7 @@ function NavBar() {
         </Link>
         <Link to="/products">
           <Typography
-               sx={{
-                marginLeft: "3vw !important",
-                fontWeight: "500 !important",
-                fontFamily: "Montserrat !important",
-                cursor: "pointer !important",
-                textDecoration: "none !important",
-                color: "black !important",
-              }}
-          >
-            Products
-          </Typography>
-        </Link>
-
-        <Typography
-           sx={{
-            marginLeft: "3vw !important",
-            fontWeight: "500 !important",
-            fontFamily: "Montserrat !important",
-            cursor: "pointer !important",
-            textDecoration: "none !important",
-            color: "black !important",
-          }}
-        >
-          Contact
-        </Typography>
-        <Typography
-             sx={{
+            sx={{
               marginLeft: "3vw !important",
               fontWeight: "500 !important",
               fontFamily: "Montserrat !important",
@@ -103,9 +77,40 @@ function NavBar() {
               textDecoration: "none !important",
               color: "black !important",
             }}
-        >
-          About
-        </Typography>
+          >
+            Products
+          </Typography>
+        </Link>
+
+        <Link to="/contact">
+          <Typography
+            sx={{
+              marginLeft: "3vw !important",
+              fontWeight: "500 !important",
+              fontFamily: "Montserrat !important",
+              cursor: "pointer !important",
+              textDecoration: "none !important",
+              color: "black !important",
+            }}
+          >
+            Contact
+          </Typography>
+        </Link>
+
+        <Link to="/about">
+          <Typography
+            sx={{
+              marginLeft: "3vw !important",
+              fontWeight: "500 !important",
+              fontFamily: "Montserrat !important",
+              cursor: "pointer !important",
+              textDecoration: "none !important",
+              color: "black !important",
+            }}
+          >
+            About
+          </Typography>
+        </Link>
 
         {isAuthenticated ? (
           <UserOptions user={user} />

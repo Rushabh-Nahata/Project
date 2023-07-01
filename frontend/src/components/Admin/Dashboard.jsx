@@ -5,10 +5,9 @@ import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Doughnut, Line } from "react-chartjs-2";
 import { useSelector, useDispatch } from "react-redux";
-import { Chart as ChartJS } from 'chart.js/auto'
+import { Chart as ChartJS } from "chart.js/auto";
 import { getAdminProduct } from "../../store/products/getProducts";
-// import { getAdminProduct } from "../../store/products/getProducts";
-// import { getAllOrders } from "../../store/orders/orderAction";
+import { getAllOrders } from "../../store/orders/orderAction";
 // import { getAllUsers } from "../../store/users/userActions";
 
 const Dashboard = () => {
@@ -16,9 +15,9 @@ const Dashboard = () => {
 
   const { products } = useSelector((state) => state.products);
 
-  const { orders } = useSelector((state) => state.order);
+  const { orders } = useSelector((state) => state.allOrders);
 
-  const { users } = useSelector((state) => state.user);
+  // const { users } = useSelector((state) => state.user);
 
   let outOfStock = 0;
 
@@ -31,10 +30,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     getAdminProduct(dispatch);
-    // getAllOrders(dispatch);
-    // dispatch(getAllUsers());
+    getAllOrders(dispatch);
+    // getAllUsers(dispatch);
     // when component unmounts
-    
   }, [dispatch]);
 
   let totalAmount = 0;
@@ -88,10 +86,10 @@ const Dashboard = () => {
               <p>Orders</p>
               <p>{orders && orders.length}</p>
             </Link>
-            <Link to="/admin/users">
+            {/* <Link to="/admin/users">
               <p>Users</p>
               <p>{users && users.length}</p>
-            </Link>
+            </Link> */}
           </div>
         </div>
 

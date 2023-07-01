@@ -11,6 +11,8 @@ import orderDetailsSlice from "./orders/orderDetailsSlice";
 import productReviewSlice from "./products/productReviewSlice";
 import newProductSlice from "./products/newProductSlice";
 import adminProductSlice from "./products/adminProductSlice";
+import allOrderSlice from "./orders/orderAdmin/allOrderSlice";
+import adminOrderSlice from "./orders/orderAdmin/adminOrderSlice";
 
 const store = configureStore({
   reducer: {
@@ -25,7 +27,9 @@ const store = configureStore({
     orderDetails: orderDetailsSlice.reducer,
     newReview: productReviewSlice.reducer,
     newProduct: newProductSlice.reducer,
-    adminProduct:adminProductSlice.reducer
+    adminProduct:adminProductSlice.reducer,
+    allOrders:allOrderSlice.reducer,
+    adminOrder:adminOrderSlice.reducer
   },
 });
 

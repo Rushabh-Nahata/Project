@@ -111,6 +111,11 @@ export const updateOrder = async (req, res, next) => {
         new ErrorHandler("You have already delivered this order !", 404)
       );
     }
+    if (req.body.status === "Shipped") {
+      order.orderItems.forEach(async (o) => {
+        await updateStock(o.product, o.quantity);
+      });
+    }
 
     order.orderItems.forEach(async (order) => {
       await updateStock(order.product, order.quantity);
