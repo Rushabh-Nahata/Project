@@ -106,6 +106,39 @@ export const createProduct = async (dispatch, productData) => {
   }
 };
 
+// Update Product
+export const updateProduct =  async (dispatch,id, productData) => {
+  try {
+    dispatch(adminProductActions.updateProductRequest());
+
+    const config = {
+      headers: {
+        "Content-Type": "application/form-data",
+      },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/admin/products/${id}`,
+      productData,
+      config
+    );
+
+    dispatch(
+      adminProductActions.updateProductSuccess({
+        isUpdated: data.success,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    dispatch(
+      adminProductActions.updateProductFail({
+        error: error.response.data.message,
+      })
+    );
+  }
+};
+
 // Delete Product
 export const deleteProduct = async (dispatch, id) => {
   try {
@@ -137,7 +170,7 @@ export const deleteProduct = async (dispatch, id) => {
   }
 };
 
-//
+//For USER and admin to get
 export const getProductDetail = async (dispatch, id) => {
   try {
     const { data } = await axios.get(
