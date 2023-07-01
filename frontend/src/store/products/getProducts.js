@@ -1,8 +1,10 @@
+import { newProductActions } from "./newProductSlice";
 import { productDetailsSliceActions } from "./productDetailsSlice";
 import { productReviewActions } from "./productReviewSlice";
 import { productActions } from "./productSlice";
 import axios from "axios";
 
+//Get products
 export const getProduct = async (
   dispatch,
   keyword = "",
@@ -38,6 +40,71 @@ export const getProduct = async (
   }
 };
 
+// Get All Products For Admin
+export const getAdminProduct = async (dispatch) => {
+  try {
+    dispatch(productActions.adminProductRequest());
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.get(
+      "http://localhost:4000/api/v1/admin/products",
+      config
+    );
+
+    dispatch(
+      productActions.adminProductSuccess({
+        products: data.products,
+      })
+    );
+  } catch (error) {
+    dispatch(
+      productActions.adminProductFail({
+        error: error.response.data.message,
+      })
+    );
+  }
+};
+
+export const createProduct = async (dispatch, productData) => {
+  try {
+    dispatch(newProductActions.newProductRequest());
+
+    const config = {
+      headers: {
+        "Content-Type": "application/form-data",
+      },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.post(
+      `http://localhost:4000/api/v1/admin/products/new`,
+      productData,
+      config
+    );
+
+    dispatch(
+      newProductActions.newProductSuccess({
+        product: data.product,
+        success: data.success,
+      })
+    );
+  } catch (error) {
+    console.log(error)
+    dispatch(
+      newProductActions.newProductFail({
+        error: error.response.data.message,
+      })
+    );
+  }
+};
+
+//
 export const getProductDetail = async (dispatch, id) => {
   try {
     const { data } = await axios.get(
@@ -84,7 +151,7 @@ export const newReview = async (dispatch, reviewData) => {
       })
     );
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data.message);
     dispatch(
       productReviewActions.newReviewFail({
         error: error.response.data.message,
@@ -92,3 +159,10 @@ export const newReview = async (dispatch, reviewData) => {
     );
   }
 };
+
+// Clearing Errors
+export const clearErrors = async (dispatch) => {
+  dispatch(productActions.clearError());
+};
+
+

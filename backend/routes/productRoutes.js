@@ -5,6 +5,7 @@ import {
   updateProduct,
   deleteProduct,
   getProductDetails,
+  getAdminProducts,
 } from "../controllers/productController.js";
 import { isAuthenticatedUser, authorizeRoles } from "../middleware/auth.js";
 import {
@@ -30,6 +31,12 @@ router.post(
   isAuthenticatedUser,
   authorizeRoles("admin"),
   createProduct
+);
+router.get(
+  "/admin/products",
+  isAuthenticatedUser,
+  authorizeRoles("admin"),
+  getAdminProducts
 );
 
 //PUT

@@ -27,6 +27,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./components/Product/Cart/OrderSuccess";
 import MyOrder from "./components/Order/MyOrder";
 import OrderDetails from "./components/Order/OrderDetails";
+import Dashboard from "./components/admin/Dashboard";
+import ProductList from "./components/Admin/ProductList";
+import NewProduct from "./components/Admin/NewProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -160,10 +163,40 @@ function App() {
             path="/order/:id"
             element={
               <ProtectedRoute>
-                <OrderDetails/>
+                <OrderDetails />
               </ProtectedRoute>
             }
           />
+
+          <Route
+            exact
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/admin/products"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProductList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/admin/product"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <NewProduct/>
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
 
         <Box

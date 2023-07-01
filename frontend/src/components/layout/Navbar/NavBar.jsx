@@ -14,30 +14,30 @@ function NavBar() {
       className="home-navbar-container"
       sx={{
         // border: "2px solid black",
-        width: "100%",
-        height: "9vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        borderBottom: "1px solid #0000001f",
+        width: "100% !important",
+        height: "9vh !important",
+        display: "flex !important",
+        alignItems: "center !important",
+        justifyContent: "space-between !important",
+        borderBottom: "1px solid #0000001f !important",
         position: "fixed",
-        top: "0px",
-        zIndex: "2",
-        backgroundColor: "white",
+        top: "0px !important",
+        zIndex: "2 !important",
+        backgroundColor: "white !important",
       }}
     >
       <Box
         className="navbar-logo-container"
         sx={{
           // border: "2px solid black",
-          width: "fit-content",
-          height: "67%",
-          display: "flex",
-          alignItems: "center",
-          fontSize: "1.8rem",
-          fontWeight: "700",
-          marginLeft: "3vw",
-          fontFamily: "Montserrat",
+          width: "fit-content !important",
+          height: "67% !important",
+          display: "flex !important",
+          alignItems: "center !important",
+          fontSize: "1.8rem !important",
+          fontWeight: "700 !important",
+          marginLeft: "3vw !important",
+          fontFamily: "Montserrat !important",
         }}
       >
         <span>SHOPHUB</span>
@@ -46,22 +46,22 @@ function NavBar() {
         className="navbar-options-container"
         sx={{
           // border: "2px solid black",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          width: "fit-content",
-          marginRight: "4vw",
+          display: "flex !important",
+          alignItems: "center !important",
+          justifyContent: "space-evenly !important",
+          width: "fit-content !important",
+          marginRight: "4vw !important",
         }}
       >
         <Link to="/">
           <Typography
             sx={{
-              marginLeft: "3vw",
-              fontWeight: "500",
-              fontFamily: "Montserrat",
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "black",
+              marginLeft: "3vw !important",
+              fontWeight: "500 !important",
+              fontFamily: "Montserrat !important",
+              cursor: "pointer !important",
+              textDecoration: "none !important",
+              color: "black !important",
             }}
           >
             Home
@@ -69,40 +69,40 @@ function NavBar() {
         </Link>
         <Link to="/products">
           <Typography
-            sx={{
-              marginLeft: "3vw",
-              fontWeight: "500",
-              fontFamily: "Montserrat",
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "black",
-            }}
+               sx={{
+                marginLeft: "3vw !important",
+                fontWeight: "500 !important",
+                fontFamily: "Montserrat !important",
+                cursor: "pointer !important",
+                textDecoration: "none !important",
+                color: "black !important",
+              }}
           >
             Products
           </Typography>
         </Link>
 
         <Typography
-          sx={{
-            marginLeft: "3vw",
-            fontWeight: "500",
-            fontFamily: "Montserrat",
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "black",
+           sx={{
+            marginLeft: "3vw !important",
+            fontWeight: "500 !important",
+            fontFamily: "Montserrat !important",
+            cursor: "pointer !important",
+            textDecoration: "none !important",
+            color: "black !important",
           }}
         >
           Contact
         </Typography>
         <Typography
-          sx={{
-            marginLeft: "3vw",
-            fontWeight: "500",
-            fontFamily: "Montserrat",
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "black",
-          }}
+             sx={{
+              marginLeft: "3vw !important",
+              fontWeight: "500 !important",
+              fontFamily: "Montserrat !important",
+              cursor: "pointer !important",
+              textDecoration: "none !important",
+              color: "black !important",
+            }}
         >
           About
         </Typography>

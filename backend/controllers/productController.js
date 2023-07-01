@@ -2,13 +2,38 @@ import Product from "../models/productModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
 import ApiFeatures from "../utils/apiFeatures.js";
+import cloudinary from "cloudinary";
 
 // CREATE PRODUCT -- Admin (Only admin can access this route)
 export const createProduct = async (req, res, next) => {
   try {
     //This will update which user has created the product (Field given in product model)
+    let images = [];
+
+    if (typeof req.body.images === "string") {
+      images.push(req.body.images);
+    } else {
+      images = req.body.images;
+    }
+  
+    const imagesLinks = [];
+  
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+  
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+  
+    req.body.images = imagesLinks;
     req.body.user = req.user.id;
+  
     const product = await Product.create(req.body);
+  
     res.status(201).json({
       success: true,
       product,
@@ -41,6 +66,16 @@ export const getAllProducts = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+// Get All Product (Admin)
+export const getAdminProducts = async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    success: true,
+    products,
+  });
 };
 
 //GET A SINGLE PRODUCT

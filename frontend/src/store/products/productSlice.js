@@ -16,6 +16,19 @@ const productSlice = createSlice({
       state.loading = false;
       state.resultPerPage = action.payload.resultPerPage;
     },
+
+    adminProductRequest(state) {
+      state.loading = true;
+    },
+    adminProductFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    adminProductSuccess(state, action) {
+      state.products = action.payload.products;
+      state.loading = false;
+    },
+
     setError(state, action) {
       state.error = action.payload.error;
       state.loading = action.payload.loading;

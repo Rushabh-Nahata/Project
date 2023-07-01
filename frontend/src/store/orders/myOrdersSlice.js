@@ -18,7 +18,7 @@ const myOrdersSlice = createSlice({
     },
     myOrderFail(state, action) {
         state.error = action.payload.error;
-        state.loading = true;
+        state.loading = false;
     },
     myOrderError(state) {
       state.error = null;

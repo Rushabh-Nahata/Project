@@ -36,7 +36,7 @@ function UserOptions({ user }) {
   };
 
   function dashboard() {
-    navigateTo("/dashboard");
+    navigateTo("/admin/dashboard");
   }
 
   function orders() {
