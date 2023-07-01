@@ -173,12 +173,7 @@ const NewProduct = () => {
             </div>
 
             {loading ? (
-              <Button
-                id="createProductBtn"
-                
-              >
-                Creating ...
-              </Button>
+              <Button id="createProductBtn">Creating ...</Button>
             ) : (
               <Button
                 id="createProductBtn"

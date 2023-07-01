@@ -1,3 +1,4 @@
+import { adminProductActions } from "./adminProductSlice";
 import { newProductActions } from "./newProductSlice";
 import { productDetailsSliceActions } from "./productDetailsSlice";
 import { productReviewActions } from "./productReviewSlice";
@@ -71,6 +72,7 @@ export const getAdminProduct = async (dispatch) => {
   }
 };
 
+//Create product for admin
 export const createProduct = async (dispatch, productData) => {
   try {
     dispatch(newProductActions.newProductRequest());
@@ -95,9 +97,40 @@ export const createProduct = async (dispatch, productData) => {
       })
     );
   } catch (error) {
-    console.log(error)
+    console.log(error);
     dispatch(
       newProductActions.newProductFail({
+        error: error.response.data.message,
+      })
+    );
+  }
+};
+
+// Delete Product
+export const deleteProduct = async (dispatch, id) => {
+  try {
+    dispatch(adminProductActions.deleteProductRequest());
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.delete(
+      `http://localhost:4000/api/v1/admin/products/${id}`,config
+    );
+
+    dispatch(
+      adminProductActions.deleteProductSuccess({
+        isDeleted: data.success,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    dispatch(
+      adminProductActions.deleteProductFail({
         error: error.response.data.message,
       })
     );
@@ -164,5 +197,3 @@ export const newReview = async (dispatch, reviewData) => {
 export const clearErrors = async (dispatch) => {
   dispatch(productActions.clearError());
 };
-
-

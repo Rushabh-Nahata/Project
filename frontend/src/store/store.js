@@ -10,6 +10,7 @@ import myOrdersSlice from "./orders/myOrdersSlice";
 import orderDetailsSlice from "./orders/orderDetailsSlice";
 import productReviewSlice from "./products/productReviewSlice";
 import newProductSlice from "./products/newProductSlice";
+import adminProductSlice from "./products/adminProductSlice";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     orderDetails: orderDetailsSlice.reducer,
     newReview: productReviewSlice.reducer,
     newProduct: newProductSlice.reducer,
+    adminProduct:adminProductSlice.reducer
   },
 });
 
