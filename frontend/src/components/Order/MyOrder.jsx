@@ -29,7 +29,17 @@ const MyOrder = () => {
       {loading ? (
         <Loader />
       ) : (
-        <Box sx={{ width: "100%", height: "91vh", marginTop: "9vh" }}>
+        <Box
+          sx={{
+            width: "100%",
+            height: "91vh",
+            marginTop: "9vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "2px solid black",
+          }}
+        >
           <table className="table">
             <thead>
               <tr>
@@ -54,7 +64,7 @@ const MyOrder = () => {
                     {/* Add your action buttons or components here */}
 
                     <Link to={`/order/${order._id}`}>
-                      <LaunchIcon />
+                      <LaunchIcon sx={{ color: "black" }} />
                     </Link>
                   </td>
                 </tr>

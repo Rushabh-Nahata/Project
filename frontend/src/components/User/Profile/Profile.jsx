@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Loader from "../../layout/Loader/Loader";
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Box, Divider } from "@mui/material";
 import "./Profile.css";
 
 const Profile = () => {
-  const navigateTo= useNavigate();
+  const navigateTo = useNavigate();
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -21,8 +22,21 @@ const Profile = () => {
         <>
           <div className="profileContainer">
             <div>
-              <h1>My Profile</h1>
-              <img src={user.avatar.url} alt={user.name} />
+              <Box
+                className="profile-img-container"
+                sx={{
+                  // border: "2px solid black",
+                  width: "27vh",
+                  height: "27vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {" "}
+                <img src={user.avatar.url} alt={user.name} />
+              </Box>
+
               <Link to="/me/update">Edit Profile</Link>
             </div>
             <div>

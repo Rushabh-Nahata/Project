@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+// import { DataGrid } from "@mui/x-data-grid";
 import "./ProductList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ import {
   clearErrors,
 } from "../../store/orders/orderAction";
 import { adminOrderActions } from "../../store/orders/orderAdmin/adminOrderSlice";
+import { Box } from "@mui/material";
 
 const OrderList = () => {
   const dispatch = useDispatch();
@@ -52,68 +53,7 @@ const OrderList = () => {
     getAllOrders(dispatch);
   }, [dispatch, alert, error, deleteError, isDeleted, navigateTo]);
 
-  const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
 
-    {
-      field: "status",
-      headerName: "Status",
-      minWidth: 150,
-      flex: 0.5,
-      cellClassName: (params) => {
-        return params.id === "Delivered" ? "greenColor" : "redColor";
-      },
-    },
-    {
-      field: "itemsQty",
-      headerName: "Items Qty",
-      type: "number",
-      minWidth: 150,
-      flex: 0.4,
-    },
-
-    {
-      field: "amount",
-      headerName: "Amount",
-      type: "number",
-      minWidth: 270,
-      flex: 0.5,
-    },
-
-    {
-      field: "actions",
-      flex: 0.3,
-      headerName: "Actions",
-      minWidth: 150,
-      type: "number",
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={`/admin/order/${params.id}`}>
-              <EditIcon />
-            </Link>
-
-            <Button onClick={() => deleteOrderHandler(params.id)}>
-              <DeleteIcon />
-            </Button>
-          </>
-        );
-      },
-    },
-  ];
-
-  const rows = [];
-
-  orders &&
-    orders.forEach((item) => {
-      rows.push({
-        id: item._id,
-        itemsQty: item.orderItems.length,
-        amount: item.totalPrice,
-        status: item.orderStatus,
-      });
-    });
 
   return (
     <>
@@ -122,15 +62,66 @@ const OrderList = () => {
         <div className="productListContainer">
           <h1 id="productListHeading">ALL ORDERS</h1>
 
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="productListTable"
-            autoHeight
-          />
+          <Box sx={{ width: "100%", minHeight: "91vh", marginTop: "9vh" }}>
+          <table className="table orderlist-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Status</th>
+                <th>Items Qty</th>
+                <th>Amount</th>
+                <th>Actions</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((item) => (
+                <tr key={item._id}>
+                  <td>{item._id}</td>
+                  <td>{item.orderStatus}</td>
+                  <td>{item.orderItems.length}</td>
+                  <td>
+                    {" "}
+                    {"Rs. "}
+                    {item.totalPrice}
+                  </td>
+                  <td>
+                    <Link to={`/admin/order/${item._id}`}>
+                      <EditIcon
+                        sx={{
+                          color: " rgba(0, 0, 0, 0.527)",
+                          transition: "all 0.5s",
+                          ":hover": {
+                            color: "black",
+                          },
+                        }}
+                      />
+                    </Link>
+                  </td>
+                  <td>
+                    <Button onClick={() => deleteOrderHandler(item._id)}>
+                      <DeleteIcon
+                        sx={{
+                          color: " rgba(0, 0, 0, 0.527) !important",
+                          transition: "all 0.5s",
+                          ":hover": {
+                            color: "black",
+                          },
+                        }}
+                      />
+                    </Button>
+                  </td>
+                  <td>
+                    <Link to={`/order/${item._id}`}></Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
         </div>
+
+   
       </div>
     </>
   );

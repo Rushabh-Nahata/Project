@@ -85,4 +85,19 @@
   margin: 1vmax;
   outline: none;
 }
-
+.css-1eiep95 {
+  width: 97%;
+}
+.reviews-header-container button {
+  height: 4vh;
+  font-size: 8px;
+  font-weight: 500;
+  margin-left: 2vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  background-color: white;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(48 48 48);
+  border-radius: 5px;
+}

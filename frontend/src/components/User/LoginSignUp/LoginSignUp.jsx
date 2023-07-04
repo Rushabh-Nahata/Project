@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import { Box } from "@mui/material";
-import { Link, useNavigate,useLocation } from "react-router-dom";
+import { Alert, Box } from "@mui/material";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import FaceIcon from "@mui/icons-material/Face";
 import Loader from "../../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login ,register} from "../../../store/users/userActions";
+import { clearErrors, login, register } from "../../../store/users/userActions";
 import { useAlert } from "react-alert";
 import "./LoginSignUp.css";
 
@@ -54,7 +54,7 @@ function LoginSignUp() {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
 
-    register(dispatch,myForm)
+    register(dispatch, myForm);
 
     console.log("Register Form Submitted !");
   };
@@ -86,7 +86,7 @@ function LoginSignUp() {
     if (isAuthenticated) {
       navigateTo(redirect);
     }
-  }, [dispatch, error, alert, isAuthenticated,navigateTo,redirect]);
+  }, [dispatch, error, alert, isAuthenticated, navigateTo, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -144,6 +144,13 @@ function LoginSignUp() {
                 </Box>
                 <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
+                <Alert severity="warning">
+                  Use these credentials to log in as an admin ! <br />
+                  <br />
+                  <p>Username : admin@gmail.com</p>
+                  <p>Password : 12345678</p>
+                  <br />
+                </Alert>
               </form>
               <form
                 className="signUpForm"

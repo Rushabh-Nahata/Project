@@ -1,9 +1,10 @@
-.home-bg-img-container {
+/* .home-bg-img-container {
   background-image: url("../images/min2-min.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 0.9;
-}
+} */
+
 .home-text-innercontainer button {
   background: rgb(48 48 48);
   display: flex;
@@ -18,4 +19,10 @@
   cursor: pointer;
   background-color: rgb(28 28 28);
   /* color: black; */
+}
+.css-4pt67k-MuiTypography-root {
+  background-color: transparent !important;
+}
+.css-105xmve-MuiTypography-root {
+  background-color: transparent !important;
 }

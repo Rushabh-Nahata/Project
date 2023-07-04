@@ -30,7 +30,6 @@ const ProcessOrder = () => {
     myForm.set("status", status);
 
     updateOrder(dispatch, params.id, myForm);
-    
   };
 
   const dispatch = useDispatch();
@@ -92,6 +91,8 @@ const ProcessOrder = () => {
                     </div>
                   </div>
 
+                  {/* <Divider orientation="horizontal"  /> */}
+
                   <Typography>Payment</Typography>
                   <div className="orderDetailsContainerBox">
                     <div>
@@ -115,6 +116,7 @@ const ProcessOrder = () => {
                       <span>{order.totalPrice && order.totalPrice}</span>
                     </div>
                   </div>
+                  {/* <Divider orientation="horizontal"  /> */}
 
                   <Typography>Order Status</Typography>
                   <div className="orderDetailsContainerBox">
@@ -130,6 +132,7 @@ const ProcessOrder = () => {
                       </p>
                     </div>
                   </div>
+                  {/* <Divider orientation="horizontal"  /> */}
                 </div>
                 <div className="confirmCartItems">
                   <Typography>Your Cart Items:</Typography>
@@ -148,6 +151,7 @@ const ProcessOrder = () => {
                         </div>
                       ))}
                   </div>
+                  {/* <Divider orientation="horizontal"  /> */}
                 </div>
               </div>
               {/*  */}

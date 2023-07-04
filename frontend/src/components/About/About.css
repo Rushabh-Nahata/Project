@@ -5,14 +5,14 @@
   background-color: white;
   display: grid;
   grid-template-columns: 4fr 4fr;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .aboutSectionGradient {
   background-image: linear-gradient(
     to bottom right,
-    rgb(78, 81, 255),
-    rgb(74, 137, 189)
+    rgb(0, 0, 0),
+    rgb(0, 0, 0)
   );
 }
 
@@ -33,7 +33,7 @@
 
 .aboutSectionContainer > h1 {
   font: 400 3vmax "Roboto";
-  color: tomato;
+  color: rgb(0, 0, 0);
   margin: 2vmax;
 }
 
@@ -53,7 +53,7 @@
 
 .aboutSectionContainer > div > div > p {
   color: rgba(0, 0, 0, 0.623);
-  font: 100 1vmax "Roboto";
+  font: 400 1vmax "Roboto";
 }
 
 .aboutSectionContainer > div > div > button {
@@ -72,8 +72,8 @@
 }
 
 .aboutSectionContainer2 > h2 {
-  color: rgba(0, 0, 0, 0.623);
-  font: 100 2vmax "Roboto";
+  color: rgb(0, 0, 0);
+  font: 400 1.7vmax "Roboto";
   margin: 2vmax;
 }
 
@@ -87,6 +87,9 @@
 
 .instagramSvgIcon {
   color: rgb(144, 81, 202);
+}
+.aboutSectionContainer2 {
+  /* border: 2px solid black; */
 }
 
 @media screen and (max-width: 600px) {

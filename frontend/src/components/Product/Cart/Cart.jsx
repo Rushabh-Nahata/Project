@@ -88,6 +88,7 @@ const Cart = () => {
                   }`}</p>
                 </div>
               ))}
+              {/* <Divider/> */}
 
             <div className="cartGrossProfit">
               <div></div>

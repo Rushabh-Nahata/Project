@@ -8,22 +8,28 @@ function ProductCard({ product }) {
     value: product.ratings,
     readOnly: true,
     precision: 0.5,
+    size: "small",
   };
   return (
     <Link className="product-card" to={`/product/${product._id}`}>
       <Box
         sx={{
           border: "1px solid #e7e3e3",
-          width: "17vw",
+          width: { xs: "43vw", sm: "17vw" },
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
           flexDirection: "column",
-          height: "54vh",
+          height: { xs: "34vh", sm: "54vh" },
           marginRight: "1vw",
           marginLeft: "1vw",
           marginBottom: "5vh",
           borderRadius: "1px",
+          transition: "top ease 8s",
+          position:"relative",
+          ":hover": {
+            top: "-10px",
+          },
         }}
       >
         <Box
@@ -38,6 +44,7 @@ function ProductCard({ product }) {
             alignItems: "center",
             justifyContent: "center",
             borderBottom: "1px solid #e7e3e3",
+            paddingBottom: "2vh",
           }}
         >
           <img
@@ -68,6 +75,7 @@ function ProductCard({ product }) {
               textDecoration: "none",
               color: "black",
               fontWeight: "700",
+              fontSize: { xs: "0.9rem", sm: "1.1rem" },
             }}
           >
             <p>{product.name}</p>
@@ -81,7 +89,7 @@ function ProductCard({ product }) {
               justifyContent: "center",
               flexDirection: "column",
               color: "black",
-              fontSize: "1.8vh",
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
               fontWeight: "500",
             }}
           >
@@ -94,6 +102,7 @@ function ProductCard({ product }) {
               // border: "2px solid black",
               fontWeight: "500",
               color: "black",
+              fontSize: { xs: "0.8rem", sm: "1rem" },
             }}
           >
             <span>Rs {product.price}</span>

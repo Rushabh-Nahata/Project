@@ -1,14 +1,12 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif ; */
+  font-family: Montserrat!important;
   text-decoration: none;
   scroll-behavior: smooth;
 }
 
-body {
-  cursor: url("../public/cursor.png"), auto;
-}
 
 /* width */
 ::-webkit-scrollbar {

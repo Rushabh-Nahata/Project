@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+// import { DataGrid } from "@mui/x-data-grid";
 import "./ProductList.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,6 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SideBar from "./Sidebar";
 import { adminProductActions } from "../../store/products/adminProductSlice";
+import { Box } from "@mui/material";
 
 const ProductList = () => {
   const navigateTo = useNavigate();
@@ -52,75 +53,11 @@ const ProductList = () => {
     getAdminProduct(dispatch);
   }, [dispatch, alert, navigateTo, error, deleteError, isDeleted]);
 
-  const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
-
-    {
-      field: "name",
-      headerName: "Name",
-      minWidth: 350,
-      flex: 1,
-    },
-    {
-      field: "stock",
-      headerName: "Stock",
-      type: "number",
-      minWidth: 150,
-      flex: 0.3,
-    },
-
-    {
-      field: "price",
-      headerName: "Price",
-      type: "number",
-      minWidth: 270,
-      flex: 0.5,
-    },
-
-    {
-      field: "actions",
-      flex: 0.3,
-      headerName: "Actions",
-      minWidth: 150,
-      type: "number",
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={`/admin/product/${params.id}`}>
-              <EditIcon />
-            </Link>
-
-            <Button
-              onClick={() => {
-                deleteProductHandler(params.id);
-              }}
-            >
-              <DeleteIcon />
-            </Button>
-          </>
-        );
-      },
-    },
-  ];
-
-  const rows = [];
-
-  products &&
-    products.forEach((item) => {
-      rows.push({
-        id: item._id,
-        stock: item.Stock,
-        price: item.price,
-        name: item.name,
-      });
-    });
-
   return (
     <>
       <div className="dashboard">
         <SideBar />
-        <div className="productListContainer">
+        {/* <div className="productListContainer">
           <h1 id="productListHeading">ALL PRODUCTS</h1>
 
           <DataGrid
@@ -131,7 +68,70 @@ const ProductList = () => {
             className="productListTable"
             autoHeight
           />
-        </div>
+        </div> */}
+
+        <Box sx={{ width: "100%", minHeight: "91vh", marginTop: "9vh" }}>
+          <table className="table orderlist-table">
+            <thead>
+              <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((item) => (
+                <tr key={item._id}>
+                  <td>{item._id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.Stock}</td>
+                  <td>
+                    {"Rs. "}
+                    {item.price}
+                  </td>
+                  <td>
+                    <Link to={`/admin/product/${item._id}`}>
+                      <EditIcon
+                        sx={{
+                          color: " rgba(0, 0, 0, 0.527)",
+                          transition: "all 0.5s",
+                          ":hover": {
+                            color: "black",
+                          },
+                        }}
+                      />
+                    </Link>
+                  </td>
+                  <td>
+                    <Button
+                      onClick={() => {
+                        deleteProductHandler(item._id);
+                      }}
+                    >
+                      <DeleteIcon
+                        sx={{
+                          color: " rgba(0, 0, 0, 0.527) !important",
+                          transition: "all 0.5s",
+                          ":hover": {
+                            color: "black",
+                          },
+                        }}
+                      />
+                    </Button>
+                  </td>
+                  <td>
+                    <Link to={`/order/${item._id}`}>
+                      {/* <LaunchIcon /> */}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
       </div>
     </>
   );

@@ -107,19 +107,20 @@ function ProductDetails() {
           sx={{
             // border: "2px solid red",
             width: "100%",
-            height: "91vh",
+            height: { xs: "250vh", sm: "91vh" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginTop: "9vh",
+            flexDirection: { xs: "column", sm: "row" },
           }}
         >
           <Box
             className="product-detail-image-container"
             sx={{
               // border: "2px solid black",
-              height: "100%",
-              width: "40%",
+              height: { xs: "32%", sm: "90%" },
+              width: { xs: "95%", sm: "40%" },
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -127,7 +128,7 @@ function ProductDetails() {
           >
             <Carousel
               sx={{
-                width: "60%",
+                width: { xs: "85%", sm: "63%" },
                 // height: "80vh",
                 // border: "2px solid black",
                 display: "flex",
@@ -152,10 +153,10 @@ function ProductDetails() {
             className="product-detail-info-container"
             sx={{
               // border: "2px solid black",
-              width: "60%",
+              width: { xs: "90%", sm: "65%" },
               height: "70%",
               display: "flex",
-              flexDirection: "row",
+              flexDirection: { xs: "column", sm: "row" },
               alignItems: "flex-start",
             }}
           >
@@ -166,18 +167,16 @@ function ProductDetails() {
                 display: "flex",
                 alignItems: "flex-start",
                 flexDirection: "column",
-                height: "100%",
-                width: "50%",
+                height: { xs: "40%", sm: "100%" },
+                width: { xs: "100%", sm: "50%" },
                 justifyContent: "space-evenly",
               }}
             >
               <Box
                 className="product-header-container"
-                sx={
-                  {
-                    // border: "2px solid black",
-                  }
-                }
+                sx={{
+                  // border: "2px solid black",
+                }}
               >
                 <h2>{product.name}</h2>
               </Box>
@@ -295,11 +294,11 @@ function ProductDetails() {
               className="reviews-container"
               sx={{
                 // border: "2px solid black",
-                height: "100%",
+                height: { xs: "50%", sm: "100%" },
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "50%",
+                width: { xs: "100%", sm: "50%" },
               }}
             >
               <Box

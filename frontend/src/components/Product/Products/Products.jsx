@@ -9,7 +9,6 @@ import { useAlert } from "react-alert";
 import { useParams } from "react-router";
 import Pagination from "react-js-pagination";
 
-
 const categories = [
   "Laptop",
   "Footwear",
@@ -26,7 +25,7 @@ function Products() {
   const params = useParams();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 2500]);
+  const [price, setPrice] = useState([0, 85000]);
   const [category, setCategory] = useState("");
   const [ratings, setRatings] = useState(0);
 
@@ -61,17 +60,18 @@ function Products() {
               minHeight: "91vh",
               // border: "2px solid black",
               display: "flex",
-              alignItems: "flex-start",
+              alignItems: { xs: "center", sm: "flex-start" },
               justifyContent: "center",
               marginTop: "9vh",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Box
               className="product-filter-container"
               sx={{
                 // border: "2px solid black",
-                minHeight: "100vh",
-                width: "13%",
+                minHeight: { xs: "30vh", sm: "100vh" },
+                width: { xs: "90%", sm: "12%" },
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-start",
@@ -102,7 +102,7 @@ function Products() {
                   valueLabelDisplay="auto"
                   aria-labelledby="range-slider"
                   min={0}
-                  max={25000}
+                  max={100000}
                   sx={{
                     color: "rgb(48 48 48)",
                     width: "90%",

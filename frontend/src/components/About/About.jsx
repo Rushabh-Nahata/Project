@@ -1,11 +1,13 @@
 import "./About.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const About = () => {
   const visitInstagram = () => {
-    window.location = "https://instagram.com/meabhisingh";
+    window.location = "https://atharvaparkale.netlify.app/";
   };
   return (
     <div className="aboutSection">
@@ -18,29 +20,52 @@ const About = () => {
           <div>
             <Avatar
               style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://res.cloudinary.com/tripleayt/image/upload/v1631555947/products/jpyibarlaxawvcvqjv5b.png"
+              src="https://res.cloudinary.com/dud1nkhu8/image/upload/v1688477195/products/PicsArt_05-23-09.30.13_df9ebj.jpg"
               alt="Founder"
             />
-            <Typography>Abhishek Singh</Typography>
+            <Typography>Atharva Parkale</Typography>
             <Button onClick={visitInstagram} color="primary">
-              Visit Instagram
+              Visit Website
             </Button>
-            <span>
-              This is a sample wesbite made by @meabhisingh. Only with the
-              purpose to teach MERN Stack on the channel 6 Pack Programmer
-            </span>
+            <span>This is a sample wesbite made by Atharva Parkale.</span>
           </div>
           <div className="aboutSectionContainer2">
-            <Typography component="h2">Our Brands</Typography>
+            <Typography component="h2">Connect</Typography>
             <a
-              href="https://www.youtube.com/channel/UCO7afj9AUo0zV69pqEYhcjw"
+              href="https://www.linkedin.com/in/atharvaparkale/"
               target="blank"
             >
-              <YouTubeIcon className="youtubeSvgIcon" />
+              <LinkedInIcon
+                sx={{
+                  fontSize: "40px !important",
+                  color: "#00000082",
+                  marginBottom:"2vh"
+                }}
+              />
             </a>
-
-            <a href="https://instagram.com/meabhisingh" target="blank">
-              <InstagramIcon className="instagramSvgIcon" />
+            <a
+              href="https://github.com/AtharvaParkale"
+              target="blank"
+            >
+              <GitHubIcon
+                sx={{
+                  fontSize: "35px !important",
+                  color: "#00000082",
+                  marginBottom:"2vh"
+                }}
+              />
+            </a>
+            <a
+              href="mailto:atharva.parkale@gmail.com"
+              target="blank"
+            >
+              <MailOutlineIcon
+                sx={{
+                  fontSize: "40px !important",
+                  color: "#00000082",
+                  marginBottom:"2vh"
+                }}
+              />
             </a>
           </div>
         </div>
@@ -49,4 +74,4 @@ const About = () => {
   );
 };
 
-export default About;   
+export default About;

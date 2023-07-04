@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* margin-top: 5vh; */
+}
+.orderlist-table {
+  width: 100% !important;
 }
 
 #productListHeading {
@@ -45,6 +49,27 @@
 
 .MuiDataGrid-columnHeader div {
   color: rgb(255, 255, 255);
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
 }
 
 @media screen and (max-width: 600px) {
