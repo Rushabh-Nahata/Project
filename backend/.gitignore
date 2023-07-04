@@ -9,6 +9,5 @@ config
 # Ignore files related to API keys
 config.env
 
-paymentControllers.js
 
 .env
