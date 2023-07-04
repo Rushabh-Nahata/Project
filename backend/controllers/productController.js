@@ -1,7 +1,7 @@
 import Product from "../models/productModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
-import ApiFeatures from "../utils/apiFeatures.js";
+import ApiFeatures from "../utils/apifeatures.js";
 import cloudinary from "cloudinary";
 
 // CREATE PRODUCT -- Admin (Only admin can access this route)
