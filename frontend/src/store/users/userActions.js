@@ -13,7 +13,7 @@ export const login = async (dispatch, email, password) => {
     };
 
     const { data } = await axios.post(
-      `https://shophub-apis.onrender.com/api/v1/login`,
+      `http://localhost:4000/api/v1/login`,
       { email, password },
       config
     );

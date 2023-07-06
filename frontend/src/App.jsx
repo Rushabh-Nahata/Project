@@ -40,7 +40,7 @@ import NewNavBar from "./components/layout/NewNavBar/NewNavBar";
 function App() {
   const dispatch = useDispatch();
 
-  const [stripeApiKey, setStripeApiKey] = useState("kbnobi");
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
     const config = {
