@@ -24,7 +24,6 @@ const pages = [
   { name: "Contact", path: "/contact" },
   { name: "About", path: "/about" },
 ];
-console.log(pages[0].path);
 
 function NewNavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

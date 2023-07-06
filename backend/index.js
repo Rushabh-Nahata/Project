@@ -20,12 +20,18 @@ process.on("uncaughtException", (err) => {
   console.log("Shutting down the server due to the uncaught exception ! ");
   process.exit(1);
 });
-
-dotenv.config({ path:"./config/config.env" });
+dotenv.config({ path: "./config/config.env" });
 
 //MIDDLEWARES
 const app = express();
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     credentials: true,
+//   })
+// );
 app.use(
+  "*",
   cors({
     origin: "http://localhost:5173",
     credentials: true,
@@ -34,7 +40,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
 // app.use(cors());
 
