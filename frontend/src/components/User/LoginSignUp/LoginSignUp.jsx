@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Alert, Box } from "@mui/material";
+import {  Box } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
@@ -144,13 +144,13 @@ function LoginSignUp() {
                 </Box>
                 <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
-                <Alert severity="warning">
+                {/* <Alert severity="warning">
                   Use these credentials to log in as an admin ! <br />
                   <br />
                   <p>Username : admin@gmail.com</p>
                   <p>Password : 12345678</p>
                   <br />
-                </Alert>
+                </Alert> */}
               </form>
               <form
                 className="signUpForm"

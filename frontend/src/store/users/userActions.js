@@ -13,7 +13,7 @@ export const login = async (dispatch, email, password) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/login`,
+      `https://shophub-apis.onrender.com/api/v1/login`,
       { email, password },
       config
     );
@@ -42,7 +42,7 @@ export const register = async (dispatch, userData) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/register`,
+      `https://shophub-apis.onrender.com/api/v1/register`,
       userData,
       config
     );
@@ -75,7 +75,7 @@ export const loadUser = async (dispatch) => {
       withCredentials: true,
     };
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/me`, config);
+    const { data } = await axios.get(`https://shophub-apis.onrender.com/api/v1/me`, config);
     // console.log(data.user);
     dispatch(
       userActions.userLoadSuccess({
@@ -103,7 +103,7 @@ export const logout = async (dispatch) => {
     };
 
     const { response } = await axios.get(
-      "http://localhost:4000/api/v1/logout",
+      "https://shophub-apis.onrender.com/api/v1/logout",
       config
     );
 

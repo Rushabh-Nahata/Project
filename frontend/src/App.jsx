@@ -50,7 +50,7 @@ function App() {
       withCredentials: true,
     };
     const { data } = await axios.get(
-      "http://localhost:4000/api/v1/stripeapikey",
+      "https://shophub-apis.onrender.com/api/v1/stripeapikey",
       config
     );
     setStripeApiKey(data.stripeApiKey);

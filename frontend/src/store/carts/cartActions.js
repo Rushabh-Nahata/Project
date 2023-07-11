@@ -5,7 +5,7 @@ import store from "../store";
 // Add to Cart
 export const addItemsToCart = async (dispatch, id, quantity) => {
   const { data } = await axios.get(
-    `http://localhost:4000/api/v1/products/${id}`
+    `https://shophub-apis.onrender.com/api/v1/products/${id}`
   );
   dispatch(
     cartsActions.addToCart({
