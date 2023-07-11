@@ -26,7 +26,7 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://splendid-shortbread-20860a.netlify.app",
     credentials: true,
   })
 );
