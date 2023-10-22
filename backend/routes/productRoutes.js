@@ -26,12 +26,13 @@ router.get(
 );
 
 //POST
-router.post(
-  "/admin/products/new",
-  isAuthenticatedUser,
+router.post("/admin/products/new",
+isAuthenticatedUser,
   authorizeRoles("admin"),
   createProduct
 );
+
+
 router.get(
   "/admin/products",
   isAuthenticatedUser,

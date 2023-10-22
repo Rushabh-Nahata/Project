@@ -16,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./NewNavBar.css";
 
 // const pages = ["Home", "Products", "Contact", "About"];
 const pages = [
@@ -128,6 +129,7 @@ function NewNavBar() {
             {pages.map((page) => (
               <>
                 <Link
+                  key={page.name}
                   to={`${page.path}`}
                   sx={{
                     color: "black !important",

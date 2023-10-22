@@ -116,8 +116,8 @@ function LoginSignUp() {
               {" "}
               <Box>
                 <Box className="login_signUp_toggle">
-                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                  <p onClick={(e) => switchTabs(e, "login")}>Login</p>
+                  <p onClick={(e) => switchTabs(e, "register")}>Register</p>
                 </Box>
                 <button ref={switcherTab}></button>
               </Box>
@@ -127,6 +127,7 @@ function LoginSignUp() {
                   <input
                     type="email"
                     placeholder="Email"
+                      class="highlight-on-focus"
                     required
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
@@ -137,12 +138,13 @@ function LoginSignUp() {
                   <input
                     type="password"
                     placeholder="Password"
+                      class="highlight-on-focus"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </Box>
-                <Link to="/password/forgot">Forget Password ?</Link>
+                  <Link to="/password/forgot" className="forgot-password-link">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
                 {/* <Alert severity="warning">
                   Use these credentials to log in as an admin ! <br />
@@ -163,6 +165,7 @@ function LoginSignUp() {
                   <input
                     type="text"
                     placeholder="Name"
+                      class="highlight-on-focus"
                     required
                     name="name"
                     value={name}
@@ -176,6 +179,7 @@ function LoginSignUp() {
                     placeholder="Email"
                     required
                     name="email"
+                      class="highlight-on-focus"
                     value={email}
                     onChange={registerDataChange}
                   />
@@ -187,6 +191,7 @@ function LoginSignUp() {
                     placeholder="Password"
                     required
                     name="password"
+                      class="highlight-on-focus"
                     value={password}
                     onChange={registerDataChange}
                   />

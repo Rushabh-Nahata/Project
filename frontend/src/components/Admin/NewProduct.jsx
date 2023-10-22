@@ -31,13 +31,20 @@ const NewProduct = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
+    "Events and Management",
+    "Membership",
+    "Bulk Orders",
+    "Travel Tourism",
+    "Professional Services",
+    "Booking and Appointment",
+    "Emergency",
+    "Home Services/Appliances",
+    "Financial Services/Insurance",
+    "Marketing /Sales Promotion",
+    "Daily Service / Subscription",
+    "Delivery/Pickup",
+    "Gift/Hampers",
+    "Documents/Government Services"
   ];
 
   useEffect(() => {

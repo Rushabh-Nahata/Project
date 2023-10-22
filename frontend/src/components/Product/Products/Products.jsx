@@ -10,13 +10,20 @@ import { useParams } from "react-router";
 import Pagination from "react-js-pagination";
 
 const categories = [
-  "Laptop",
-  "Footwear",
-  "Bottom",
-  "Tops",
-  "Attire",
-  "Camera",
-  "SmartPhones",
+  "Events and Management",
+  "Membership",
+  "Bulk Orders",
+  "Travel Tourism",
+  "Professional Services",
+  "Booking and Appointment",
+  "Emergency",
+  "Home Services/Appliances",
+  "Financial Services/Insurance",
+  "Marketing /Sales Promotion",
+  "Daily Service / Subscription",
+  "Delivery/Pickup",
+  "Gift/Hampers",
+  "Documents/Government Services"
 ];
 
 function Products() {

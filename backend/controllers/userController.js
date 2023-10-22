@@ -40,6 +40,8 @@ export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    console.log("Login started ...");
+
     //Checking if user has given password and email both
     if (!email || !password) {
       return next(new ErrorHandler("Please enter email and password !", 400));
@@ -61,6 +63,7 @@ export const loginUser = async (req, res, next) => {
 
     //If matches then send the token
     sendToken(user, 200, res);
+    console.dir("here" ,req.cookies.name);
   } catch (err) {
     next(err.stack);
   }

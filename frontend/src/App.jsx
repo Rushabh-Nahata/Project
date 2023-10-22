@@ -36,6 +36,7 @@ import ProcessOrder from "./components/Admin/ProcessOrder";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import NewNavBar from "./components/layout/NewNavBar/NewNavBar";
+import ExtraNavbar from "./components/layout/ExtraNavbar/ExtraNavbar";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function App() {
       withCredentials: true,
     };
     const { data } = await axios.get(
-      "https://shophub-apis.onrender.com/api/v1/stripeapikey",
+      "http://localhost:4000/api/v1/stripeapikey",
       config
     );
     setStripeApiKey(data.stripeApiKey);
@@ -67,7 +68,9 @@ function App() {
     <Router>
       <Box className="App">
         {/* <NavBar /> */}
+        <ExtraNavbar />
         <NewNavBar />
+       
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />

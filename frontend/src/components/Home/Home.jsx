@@ -30,88 +30,6 @@ const Home = () => {
         <Loader />
       ) : (
         <>
-          <Box
-            sx={{
-              // border: " 2px solid black",
-              minHeight: "100vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              marginTop: "9vh",
-            }}
-          >
-            <Box
-              className="home-bg-img-container"
-              sx={{
-                // border: "2px solid black",
-                width: "100%",
-                height: "91vh",
-                display: { xs: "none", sm: "flex" },
-                alignItems: "flex-start",
-                justifyContent: "flex-end",
-                flexDirection: { xs: "column", sm: "row" },
-                backgroundImage: { xs: "none", sm: `url('${bgImg}')` },
-                opacity: "0.9",
-                backgroundSize: "100%",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <Box
-                className="home-text-container"
-                sx={{
-                  // border: "2px solid black",
-                  width: { xs: "100%", sm: "50%" },
-                  height: "100%",
-                }}
-              >
-                <Box
-                  className="home-text-innercontainer"
-                  sx={{
-                    // border: "2px solid black",
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginTop: "7vh",
-                    backgroundColor: "transparent !important",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: "2.3vw",
-                      fontFamily: "Montserrat",
-                      fontWeight: "600",
-                      backgroundColor: "transparent !important",
-                    }}
-                  >
-                    Enjoy a Hassle Free
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      fontSize: "2.9vw",
-                      fontWeight: "800",
-                      marginBottom: "2.7vh",
-                      backgroundColor: "transparent !important",
-                    }}
-                  >
-                    Shopping Experience.
-                  </Typography>
-                  <a href="#home-products">
-                    <Button
-                      size="medium"
-                      variant="contained"
-                      endIcon={<LocalMallOutlinedIcon />}
-                      sx={{
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      Shop now
-                    </Button>
-                  </a>
-                </Box>
-              </Box>
-            </Box>
             <Box
               className="home-products-container"
               id="home-products"
@@ -178,7 +96,6 @@ const Home = () => {
                 </Box>
               </Box>
             </Box>
-          </Box>
 
           <Box
           className="home-footer-container"
