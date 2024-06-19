@@ -20,7 +20,7 @@ process.on("uncaughtException", (err) => {
   console.log("Shutting down the server due to the uncaught exception ! ");
   process.exit(1);
 });
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "config.env" });
 
 //MIDDLEWARES
 const app = express();
@@ -82,6 +82,6 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-  app.get("/", (req, res) => {
-    res.status(201).json({message:"Connected to backend"});
-  })
+app.get("/", (req, res) => {
+  res.status(201).json({ message: "Connected to backend" });
+});
