@@ -26,7 +26,7 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 app.use(
   cors({
-    origin: "karwadenge.com",
+    origin: "http://karwadenge.com",
     credentials: true,
   })
 );
@@ -81,3 +81,7 @@ mongoose
     });
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+  app.get("/", (req, res) => {
+    res.status(201).json({message:"Connected to backend"});
+  })
