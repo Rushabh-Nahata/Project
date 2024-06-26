@@ -90,7 +90,7 @@ const orderSchema = new mongoose.Schema({
 
   shippingPrice: {
     type: String,
-    default: 0,
+    default: "Free",
     required: false,
   },
   totalPrice: {

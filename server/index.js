@@ -26,7 +26,7 @@ dotenv.config({ path: "config.env" });
 const app = express();
 app.use(
   cors({
-    origin: "http://karwadenge.com",
+    origin: "https://karwadenge.com",
     credentials: true,
   })
 );

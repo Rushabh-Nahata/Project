@@ -12,38 +12,28 @@ import bgImg from "../images/min2-min.jpg";
 // import ServicesProvided from "./ServicesProvided";
 import ServicesDisplay from "./ServicesDisplay";
 
-// const categories = [
-//   "Events and Management",
-//   "Membership",
-//   "Bulk Orders",
-//   "Travel Tourism",
-//   "Professional Services",
-//   "Booking and Appointment",
-//   "Emergency",
-//   "Home Services/Appliances",
-//   "Financial Services/Insurance",
-//   "Marketing /Sales Promotion",
-//   "Daily Service / Subscription",
-//   "Delivery/Pickup",
-//   "Gift/Hampers",
-//   "Documents/Government Services"
-// ];
+import ProfessionalServices from "../../../src/assets/professional-services.png"
+import HomeAppliances from "../../../src/assets/house-cleaning.png"
+import GiftBox from "../../../src/assets/gift-box.png"
+// import Easy from "../../../src/assets/easy.png"
+import MakeWebsite from "../../../src/assets/documentation.png"
+
 const categories = [
   {
-    src: '../../../src/assets/professional-services.png', // Replace 'path-to-image2.jpg' with the actual path to your second image.
+    src: ProfessionalServices,
     name: 'Professional Services',
   },
   {
-    src: '../../../src/assets/house-cleaning.png', // Replace 'path-to-image2.jpg' with the actual path to your second image.
+    src: HomeAppliances,
     name: 'Home Services/Appliances',
   },
 
   {
-    src: '../../../src/assets/gift-box.png', // Replace 'path-to-image2.jpg' with the actual path to your second image.
+    src: GiftBox,
     name: 'Gift/Hampers',
   },
   {
-    src: '../../../src/assets/documentation.png', // Replace 'path-to-image2.jpg' with the actual path to your second image.
+    src: MakeWebsite,
     name: 'Make Website',
   },
 
